@@ -34,13 +34,15 @@
     <div class="login-box-body">
         <p class="login-box-msg login">Login Perpustakaan</p>
 
-        <form action="../../index2.html" method="post">
+        <?= $this->session->flashdata('info');?>
+
+        <form action="<?= base_url()?>login/proses_login" method="post">
         <div class="form-group has-feedback">
-            <input type="text" name="username" class="form-control" placeholder="username">
+            <input type="text" name="username" class="form-control" placeholder="username" required>
             <span class="glyphicon glyphicon-user form-control-feedback"></span>
         </div>
         <div class="form-group has-feedback">
-            <input type="password" name="password" class="form-control" placeholder="Password">
+            <input type="password" name="password" class="form-control" placeholder="Password" required>
             <span class="glyphicon glyphicon-lock form-control-feedback"></span>
         </div>
 
