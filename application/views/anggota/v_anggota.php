@@ -33,8 +33,25 @@
                     <th>Aksi</th>
                 </tr>
             </thead>
-            <tbody>
 
+            <tbody>
+                <?php 
+                    foreach ($data as $row) {?>
+                        <tr>
+                            <td><?= $row->id_anggota;?></td>
+                            <td><?= $row->nis;?></td>
+                            <td><?= $row->nama_anggota;?></td>
+                            <td><?= $row->email;?></td>
+                            <td><?= $row->jenis_kelamin;?></td>
+                            <td><?= $row->alamat;?></td>
+                            <td><?= $row->no_telp;?></td>
+                            <td>
+                                <a href="<?= base_url()?>anggota/edit/<?= $row->id_anggota?>" class="btn btn-success btn-xs">edit</a>
+                                <a href="<?= base_url()?>anggota/hapus/<?= $row->id_anggota?>" class="btn btn-danger btn-xs" onclick="return confirm('Yakin  Mau Menghapus?')">hapus</a>
+                            </td>
+                        </tr>
+                  <?php  }
+                ?>
             </tbody>
         </table>
     </div>
