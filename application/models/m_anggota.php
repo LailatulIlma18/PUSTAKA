@@ -25,14 +25,4 @@ class M_anggota Extends CI_Model{
 
 
 
-
-
-
-
-
-
-
-
-
-
 ?>
