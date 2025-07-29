@@ -16,8 +16,8 @@
     <!-- sidebar menu: : style can be found in sidebar.less -->
     <ul class="sidebar-menu" data-widget="tree">
       <li class="header">MAIN NAVIGATION</li>
-      <li class="active treeview">
-        <a href="#">
+      <li class="active">
+        <a href="<?= base_url()?>dashboard">
           <i class="fa fa-dashboard"></i> <span>Dashboard</span>
         </a>
       </li>
@@ -35,8 +35,8 @@
           </span>
         </a>
         <ul class="treeview-menu">
-          <li><a href="peminjaman"><i class="fa fa-upload"></i> Peminjaman</a></li>
-          <li><a href="pengembalian"><i class="fa fa-download"></i> Pengembalian </a></li>
+          <li><a href="<?= base_url()?>peminjaman"><i class="fa fa-upload"></i> Peminjaman</a></li>
+          <li><a href="<?= base_url()?>pengembalian"><i class="fa fa-download"></i> Pengembalian </a></li>
         </ul>
       </li>
 
