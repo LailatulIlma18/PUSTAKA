@@ -56,7 +56,7 @@
                                 ?>
                             </td>
                             <td>
-                                 <a href="" class="btn btn-primary btn-xs"> Kembalikan</a>
+                                 <a href="<?= base_url()?>peminjaman/kembalikan/<?= $row->id_peminjaman;?>" class="btn btn-primary btn-xs" onclick="return confirm('Yakin buku ini mau di kembalikan?)"> Kembalikan</a>
                             </td>
                         </tr>
                   <?php  } 

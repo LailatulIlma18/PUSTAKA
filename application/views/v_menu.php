@@ -22,7 +22,7 @@
         </a>
       </li>
 
-      <li><a href="anggota"><i class="fa fa-user"></i> Data Anggota</a></li>
+      <li><a href="<?= base_url() ?>anggota"><i class="fa fa-user"></i> Data Anggota</a></li>
       <li><a href="<?= base_url() ?>kategori"><i class="fa fa-table"></i>Kategori</a></li>
       <li><a href="<?= base_url() ?>buku"><i class="fa fa-book"></i> Buku</a></li>
 
@@ -39,7 +39,6 @@
           <li><a href="pengembalian"><i class="fa fa-download"></i> Pengembalian </a></li>
         </ul>
       </li>
-      <hr>
 
       <li><a href="login/logout"><i class="fa fa-sign-out"></i> Logout</a></li>
 

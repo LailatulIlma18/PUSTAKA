@@ -48,6 +48,27 @@ class Peminjaman extends CI_Controller{
         $data = $this->m_peminjaman->jumlah_buku($id);
         echo json_encode($data);    
     }
+
+    public function kembalikan($id)
+    {
+        $data = $this->m_peminjaman->getDataById_peminjaman($id);
+        $kembalikan = array(
+            'id_anggota'        => $data['id_anggota'],
+            'id_buku'           => $data['id_buku'],
+            'tgl_pinjam'        => $data['tgl_pinjam'],
+            'tgl_kembali'       => $data['tgl_kembali'],
+            'tgl_kembalikan'    => date('Y-m-d')
+        );
+
+        $query = $this->db->insert('pengembalian', $kembalikan);
+        if ($query = true) {
+            $delete = $this->m_peminjaman->deletePeminjaman($id);
+            if ($delete = true) {
+                $this->session->set_flashdata('info', 'Buku Berhasil di Kembalikan');
+                redirect('peminjaman');
+            }
+        }
+    }
 }
 
 
