@@ -40,6 +40,19 @@
         </ul>
       </li>
 
+      <li class="treeview">
+        <a href="#">
+          <i class="fa  fa-pie-chart"></i>
+          <span>Report</span>
+          <span class="pull-right-container">
+            <span class="label label-primary pull-right">2</span>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li><a href="<?= base_url()?>laporan/peminjaman"><i class="fa  fa-file-text"></i>Laporan Peminjaman</a></li>
+        </ul>
+      </li>
+
       <li><a href="login/logout"><i class="fa fa-sign-out"></i> Logout</a></li>
 
     </ul>
