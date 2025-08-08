@@ -23,12 +23,13 @@
         <table id="example1" class="table table-bordered table-striped">
             <thead>
                 <tr>
-                    <th>Id Peminjaman</th>
+                    <th>Kode Peminjaman</th>
                     <th>Peminjam</th>
                     <th>Buku</th>
                     <th>Tanggal Pinjam</th>
                     <th>Tanggal Kembali</th>
                     <th>Status</th>
+                    <th>Total Denda</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
@@ -41,7 +42,8 @@
                         $selisih = $tgl_sekarang->diff($tgl_kembali )->format("%a");
                         ?>
                         <tr>
-                            <td><?= $row->id_peminjaman;?></td>
+                            <!-- <td><?= $row->id_peminjaman;?></td> -->
+                            <td><?= $row->kode_peminjaman;?></td>
                             <td><?= $row->nama_anggota;?></td>
                             <td><?= $row->judul;?></td>
                             <td><?= $row->tgl_pinjam;?></td>
@@ -49,14 +51,23 @@
                             <td>
                                 <?php 
                                     if ($tgl_kembali >= $tgl_sekarang OR $selisih == 0) {
-                                        echo "<span class='label label-warning'>Belum di Kembalikan</span>";
+                                        echo "<span class='label label-warning'>dipinjam</span>";
                                     }else{
                                         echo "Telat <b style = 'color:red;'>" .$selisih. "</b> Hari <br> <span class='label label-danger'>Denda Perhari = 1.000</span>" ;
                                     }
                                 ?>
                             </td>
                             <td>
-                                 <a href="<?= base_url()?>peminjaman/kembalikan/<?= $row->id_peminjaman;?>" class="btn btn-primary btn-xs" onclick="return confirm('Yakin buku ini mau di kembalikan?)"> Kembalikan</a>
+                                <?php 
+                                    if ($tgl_kembali < $tgl_sekarang && $selisih > 0) {
+                                        echo "Rp " . number_format($selisih * 1000, 0, ',', '.');
+                                    }else{
+                                        echo "_";
+                                    }
+                                ?>
+                            </td>
+                            <td>
+                                <a href="<?= base_url()?>peminjaman/kembalikan/<?= $row->id_peminjaman;?>" class="btn btn-primary btn-xs" onclick="return confirm('Yakin buku ini mau di kembalikan?')"> Kembalikan</a>
                             </td>
                         </tr>
                   <?php  } 

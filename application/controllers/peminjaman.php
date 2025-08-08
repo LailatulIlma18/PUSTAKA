@@ -20,7 +20,7 @@ class Peminjaman extends CI_Controller{
     {
         $isi['content'] = 'peminjaman/t_peminjaman';
         $isi['judul'] = "Form Tambah Peminjaman Buku";
-        $isi['id_peminjaman'] = $this->m_peminjaman->id_peminjaman();
+        $isi['kode_peminjaman'] = $this->m_peminjaman->kode_peminjaman();
         $isi['peminjam'] = $this->db->get('anggota')->result();
         $isi['buku'] = $this->db->get('buku')->result();
         $this->load->view('v_dashboard', $isi);
@@ -30,6 +30,7 @@ class Peminjaman extends CI_Controller{
     {
         $data = array(
             'id_peminjaman' => $this->input->post('id_peminjaman'),
+            'kode_peminjaman' => $this->input->post('kode_peminjaman'),
             'id_anggota'    => $this->input->post('id_anggota'),
             'id_buku'       => $this->input->post('id_buku'),
             'tgl_pinjam'    => $this->input->post('tgl_pinjam'),
@@ -52,25 +53,40 @@ class Peminjaman extends CI_Controller{
     public function kembalikan($id)
     {
         $data = $this->m_peminjaman->getDataById_peminjaman($id);
+
+        $tgl_kembali = new DateTime($data['tgl_kembali']);
+        $tgl_sekarang = new DateTime();
+        $selisih = $tgl_sekarang->diff($tgl_kembali)->format("%a");
+            if ($tgl_sekarang > $tgl_kembali) {
+                $telat = $selisih;
+                $denda = $telat * 1000;
+            }else{
+                $telat = 0;
+                $denda = 0;
+            }
+
         $kembalikan = array(
-            'id_anggota'        => $data['id_anggota'],
-            'id_buku'           => $data['id_buku'],
-            'tgl_pinjam'        => $data['tgl_pinjam'],
-            'tgl_kembali'       => $data['tgl_kembali'],
-            'tgl_kembalikan'    => date('Y-m-d')
+            'id_anggota' => $data['id_anggota'],
+            'id_buku' => $data['id_buku'],
+            'tgl_pinjam' => $data['tgl_pinjam'],
+            'tgl_kembali' => $data['tgl_kembali'],
+            'tgl_kembalikan' => date('Y-m-d'),
+            'telat' => $telat,
+            'denda' => $denda
         );
 
         $query = $this->db->insert('pengembalian', $kembalikan);
         if ($query = true) {
             $delete = $this->m_peminjaman->deletePeminjaman($id);
-            if ($delete = true) {
-                $this->session->set_flashdata('info', 'Buku Berhasil di Kembalikan');
-                redirect('peminjaman');
+            if ($denda > 0) {
+                $this->session->set_flashdata('info', 'Buku diKembalikan. Denda : Rp ' . number_format($denda, 0, ',', '.'));
+            }else{
+                $this->session->set_flashdata('info', 'Buku dikembalikan tanpa denda');
+             redirect('peminjaman');
             }
         }
     }
 }
-
 
 
 ?>

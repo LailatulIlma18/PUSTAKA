@@ -1,8 +1,8 @@
 <?php 
     $tgl_pinjam =  date('Y-m-d');
 
-    $tujuh_hari = mktime(0, 0, 0, date("n"), date("j") + 7, date("Y"));
-    $tgl_kembali = date("Y-m-d", $tujuh_hari);
+    $tiga_hari = mktime(0, 0, 0, date("n"), date("j") + 3, date("Y"));
+    $tgl_kembali = date("Y-m-d", $tiga_hari);
 ?>
 
 <div class="col-md-12">
@@ -15,9 +15,9 @@
             <div class="box-body">
 
                   <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-2 control-label">Id peminjaman</label>
+                    <label for="inputEmail3" class="col-sm-2 control-label">Kode peminjaman</label>
                     <div class="col-sm-10">
-                        <input type="text" name="id_peminjaman" value="<?= $id_peminjaman;?>" class="form-control" readonly>
+                        <input type="text" name="kode_peminjaman" value="<?= $kode_peminjaman;?>" class="form-control" readonly>
                     </div>
                 </div> 
 

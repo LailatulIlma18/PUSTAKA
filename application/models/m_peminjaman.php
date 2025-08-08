@@ -2,7 +2,7 @@
 
 class M_peminjaman Extends CI_Model {
 
-    public function id_peminjaman()
+    public function kode_peminjaman()
     {
         $this->db->select('RIGHT(peminjaman.id_peminjaman,3) as kode', FALSE);
         $this->db->order_by('id_peminjaman', 'DESC');
@@ -53,10 +53,6 @@ class M_peminjaman Extends CI_Model {
         return $this->db->delete('peminjaman');
     }
 }
-
-
-
-
 
 
 ?>

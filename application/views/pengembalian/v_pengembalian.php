@@ -9,10 +9,12 @@
                 <tr>
                     <th>No.</th>
                     <th>Nama Peminjam</th>
-                    <th>JudulmBuku</th>
+                    <th>Judul Buku</th>
                     <th>Tanggal Pinjam</th>
                     <th>Tanggal Kembali</th>
                     <th>Tanggal di kembalikan</th>
+                    <th>Terlambat</th>
+                    <th>Denda</th>
                 </tr>
             </thead>
 
@@ -28,12 +30,15 @@
                                 <td><?= $row['tgl_pinjam']; ?></td>
                                 <td><?= $row['tgl_kembali']; ?></td>
                                 <td><?= $row['tgl_kembalikan']; ?></td>
+                                <td>
+                                    <?= ($row['telat'] > 0) ? $row ['telat'] . ' hari' : 'Tepat Waktu'; ?>
+                                </td>
+                                <td>
+                                    <?= ($row['denda'] > 0) ? 'Rp' . number_format($row['denda'], 0, ',', '.') : '-'; ?>
+                                </td>
                             </tr>
 
                        <?php }
-
-                
-                
                 ?>
             </tbody>
         </table>
