@@ -2,10 +2,10 @@
 
 class M_buku extends CI_Model{
 
-    public function id_buku()
+    public function kode_buku()
     {
-        $this->db->select('RIGHT(buku.id_buku,3) as kode', FALSE);
-        $this->db->order_by('id_buku', 'DESC');
+        $this->db->select('RIGHT(buku.kode_buku,3) as kode', FALSE);
+        $this->db->order_by('kode_buku', 'DESC');
         $this->db->limit(1);
         $query = $this->db->get('buku');
         if ($query->num_rows()<>0) {
@@ -45,7 +45,7 @@ class M_buku extends CI_Model{
         $this->db->update('buku', $data);
     }
 
-     public function delete($id)
+     public function hapus($id)
     {
         $this->db->where('id_buku', $id);
         $this->db->delete('buku');

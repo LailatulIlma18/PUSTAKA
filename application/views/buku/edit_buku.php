@@ -6,10 +6,17 @@
 
         <form method="post" action="<?= base_url()?>buku/update" class="form-horizontal">
             <div class="box-body">
-                  <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-2 control-label">Id Buku</label>
+                  <!-- <div class="form-group"> -->
+                    <!-- <label for="inputEmail3" class="col-sm-2 control-label">Id Buku</label> -->
+                    <!-- <div class="col-sm-10"> -->
+                        <input type="hidden" name="id_buku" value="<?= $data['id_buku']; ?>" class="form-control" >
+                    <!-- </div> -->
+                <!-- </div>  -->
+
+                 <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Kode Buku</label>
                     <div class="col-sm-10">
-                        <input type="text" name="id_buku" value="<?= $data['id_buku'];?>" class="form-control" readonly>
+                        <input type="text" name="kode_buku" value="<?= $data['kode_buku'];?>" class="form-control" readonly>
                     </div>
                 </div> 
 

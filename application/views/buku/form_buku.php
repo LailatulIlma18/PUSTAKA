@@ -6,10 +6,17 @@
 
         <form method="post" action="<?= base_url()?>buku/simpan" class="form-horizontal">
             <div class="box-body">
-                  <div class="form-group">
+                  <!-- <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">Id Buku</label>
+                    <div class="col-sm-10"> -->
+                        <input type="hidden" name="id_buku" class="form-control" readonly>
+                    <!-- </div>
+                </div>  -->
+
+            <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Kode Buku</label>
                     <div class="col-sm-10">
-                        <input type="text" name="id_buku" value="<?= $id_buku;?>" class="form-control" readonly>
+                        <input type="text" name="kode_buku" value="<?= $kode_buku;?>"  class="form-control" readonly>
                     </div>
                 </div> 
 

@@ -23,7 +23,8 @@
         <table id="example1" class="table table-bordered table-striped">
             <thead>
                 <tr>
-                    <th>Id Buku</th>
+                    <!-- <th>Id Buku</th> -->
+                    <th>Kode Buku</th>
                     <th>Judul</th>
                     <th>Kategori</th>
                     <th>Penulis</th>
@@ -39,7 +40,7 @@
                 <?php
                     foreach($data->result() as $row) {?>
                     <tr>
-                        <td><?= $row->id_buku;?></td>
+                        <td><?= $row->kode_buku;?></td>
                         <td><?= $row->judul;?></td>
                         <td><?= $row->nama_kategori;?></td>
                         <td><?= $row->penulis;?></td>
@@ -49,7 +50,7 @@
                         <td><?= $row->jumlah;?></td>
                         <td>
                             <a href="<?= base_url()?>buku/edit/<?= $row->id_buku;?>" class="btn btn-success btn-xs">Edit</a>
-                            <a href="<?= base_url()?>buku/hapus/<?= $row->id_buku;?>" class="btn btn-danger btn-xs" onclick="return confirm('Yakin Mau Menghapus?">Hapus</a>
+                            <a href="<?= base_url()?>buku/hapus/<?= $row->id_buku;?>" class="btn btn-danger btn-xs" onclick="return confirm('Yakin Mau Menghapus?')">Hapus</a>
                         </td>
                     </tr>
 

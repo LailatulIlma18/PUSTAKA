@@ -8,7 +8,6 @@ class Anggota Extends CI_Controller{
         $this->load->model('m_anggota');
     }
 
-
     public function index()
     {
         $isi['content'] = 'anggota/v_anggota';
@@ -21,7 +20,7 @@ class Anggota Extends CI_Controller{
     {
         $isi['content'] = 'anggota/form_anggota';
         $isi['judul'] = 'Form Tambah Anggota';
-        $isi['id_anggota'] = $this->m_anggota->id_anggota();
+        $isi['kode_anggota'] = $this->m_anggota->kode_anggota();
         $this->load->view('v_dashboard', $isi);
     }
 
@@ -29,6 +28,7 @@ class Anggota Extends CI_Controller{
     {
         $data = array(
             'id_anggota'        => $this->input->post('id_anggota'),
+            'kode_anggota'      => $this->input->post('kode_anggota'),
             'nis'               => $this->input->post('nis'),
             'nama_anggota'      => $this->input->post('nama_anggota'),
             'email'             => $this->input->post('email'),
@@ -57,6 +57,7 @@ class Anggota Extends CI_Controller{
         $id_anggota = $this->input->post('id_anggota');
         $data = array(
                 'id_anggota'        => $this->input->post('id_anggota'),
+                'kode_anggota'        => $this->input->post('kode_anggota'),
                 'nis'               => $this->input->post('nis'),
                 'nama_anggota'      => $this->input->post('nama_anggota'),
                 'email'             => $this->input->post('email'),

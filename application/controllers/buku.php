@@ -19,7 +19,7 @@ class Buku Extends CI_Controller{
     {
         $isi['content'] = 'buku/form_buku';
         $isi['judul'] = 'Form Tambah Buku';
-        $isi['id_buku'] = $this->m_buku->id_buku();
+        $isi['kode_buku'] = $this->m_buku->kode_buku();
         $isi['kategori'] = $this->db->get('kategori')->result();
         $this->load->view('v_dashboard', $isi);
     }
@@ -28,6 +28,7 @@ class Buku Extends CI_Controller{
     {
         $data = array (
             'id_buku'       => $this->input->post('id_buku'),
+            'kode_buku'     => $this->input->post('kode_buku'),
             'judul'         => $this->input->post('judul'),
             'id_kategori'   => $this->input->post('id_kategori'),
             'penulis'       => $this->input->post('penulis'),
@@ -60,7 +61,8 @@ class Buku Extends CI_Controller{
     {   
         $id_buku = $this->input->post('id_buku');
         $data = array (
-            'id_buku'       => $this->input->post('id_buku'),
+            // 'id_buku'       => $this->input->post('id_buku'),
+            'kode_buku'     => $this->input->post('kode_buku'),
             'judul'         => $this->input->post('judul'),
             'id_kategori'   => $this->input->post('id_kategori'),
             'penulis'       => $this->input->post('penulis'),
@@ -77,9 +79,9 @@ class Buku Extends CI_Controller{
         } 
     }
 
-     public function delete($id)
+     public function hapus ($id)
      {
-        $query = $this->m_buku->delete($id);
+        $query = $this->m_buku->hapus($id);
         if ($query = true) {
             $this->session->set_flashdata('info', 'Data Buku Berhasil di Hapus');
             redirect('buku');

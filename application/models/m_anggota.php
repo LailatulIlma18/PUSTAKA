@@ -2,10 +2,10 @@
 
 class M_anggota Extends CI_Model{
 
-    public function id_anggota()
+    public function kode_anggota()
     {
-        $this->db->select('RIGHT(anggota.id_anggota,3) as kode', FALSE);
-        $this->db->order_by('id_anggota', 'DESC');
+        $this->db->select('RIGHT(anggota.kode_anggota,3) as kode', FALSE);
+        $this->db->order_by('kode_anggota', 'DESC');
         $this->db->limit(1);
         $query = $this->db->get('anggota');
         if ($query->num_rows()<>0) {

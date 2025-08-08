@@ -6,10 +6,13 @@
 
         <form method="post" action="<?= base_url()?>anggota/simpan" class="form-horizontal">
             <div class="box-body">
+
+                <input type="hidden" name="id_anggota" 56class="form-control" >
+
                 <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-2 control-label">Id Anggota</label>
+                    <label for="inputEmail3" class="col-sm-2 control-label">Kode Anggota</label>
                     <div class="col-sm-10">
-                        <input type="email" name="id_anggota" value="<?= $id_anggota;?>" class="form-control" readonly>
+                        <input type="email" name="kode_anggota" value="<?= $kode_anggota;?>" class="form-control" readonly>
                     </div>
                 </div>
 

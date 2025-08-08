@@ -23,7 +23,7 @@
         <table id="example1" class="table table-bordered table-striped">
             <thead>
                 <tr>
-                    <th>Id Anggota</th>
+                    <th>Kode Anggota</th>
                     <th>NIS</th>
                     <th>Nama Anggota</th>
                     <th>Email</th>
@@ -38,7 +38,7 @@
                 <?php 
                     foreach ($data as $row) {?>
                         <tr>
-                            <td><?= $row->id_anggota;?></td>
+                            <td><?= $row->kode_anggota;?></td>
                             <td><?= $row->nis;?></td>
                             <td><?= $row->nama_anggota;?></td>
                             <td><?= $row->email;?></td>
