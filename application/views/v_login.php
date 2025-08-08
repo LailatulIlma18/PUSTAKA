@@ -5,11 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Perpustakaan | Log in</title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <link rel="stylesheet" href="asset/bower_components/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="asset/bower_components/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="asset/bower_components/Ionicons/css/ionicons.min.css">
-    <link rel="stylesheet" href="asset/dist/css/AdminLTE.min.css">
-    <link rel="stylesheet" href="asset/plugins/iCheck/square/blue.css">
+    <link rel="stylesheet" href="<?= base_url() ?>asset/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="<?= base_url() ?>asset/bower_components/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="<?= base_url() ?>asset/bower_components/Ionicons/css/ionicons.min.css">
+    <link rel="stylesheet" href="<?= base_url() ?>asset/dist/css/AdminLTE.min.css">
+    <link rel="stylesheet" href="<?= base_url() ?>asset/plugins/iCheck/square/blue.css">
 
 
     <!-- Google Font -->
@@ -47,10 +47,12 @@
         </div>
 
         <div class="row">
-            <div class="col-xs-4">
+        <div class="col-xs-6">
             <button type="submit" class="btn btn-primary btn-block btn-flat">Login</button>
-            </div>
-            <!-- /.col -->
+        </div>
+        <div class="col-xs-6">
+            <a href="<?= base_url('register') ?>" class="btn btn-danger btn-block btn-flat">Registerasi</a>
+        </div>
         </div>
         </form>
 
@@ -65,11 +67,11 @@
     <!-- /.login-box -->
 
     <!-- jQuery 3 -->
-    <script src="../../bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="<?= base_url() ?>asset/bower_components/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap 3.3.7 -->
-    <script src="../../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="<?= base_url() ?>asset/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- iCheck -->
-    <script src="../../plugins/iCheck/icheck.min.js"></script>
+    <script src="<?= base_url() ?>asset/plugins/iCheck/icheck.min.js"></script>
     <script>
     $(function () {
         $('input').iCheck({

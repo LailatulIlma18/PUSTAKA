@@ -47,7 +47,7 @@
           <i class="fa  fa-pie-chart"></i>
           <span>Report</span>
           <span class="pull-right-container">
-            <span class="label label-primary pull-right">2</span>
+            <span class="label label-primary pull-right">1</span>
           </span>
         </a>
         <ul class="treeview-menu">

@@ -24,6 +24,12 @@
             redirect('login');
         }
        }
+
+        public function register($data)
+        {
+             return $this->db->insert('login', $data);
+        } 
+
     }
 
 
