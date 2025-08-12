@@ -25,8 +25,8 @@
                </div> -->
 
                 <div class="box-footer">
-                    <a href="<?= base_url()?>kategori" class="btn btn-warning">Cancel</a>
-                    <button type="submit" class="btn btn-Primary">Simpan</button>
+                    <a href="<?= base_url()?>kategori" class="btn btn-Primary">Cancel</a>
+                    <button type="submit" class="btn btn-warning">Simpan</button>
                 </div>
             
         </form>

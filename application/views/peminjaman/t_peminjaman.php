@@ -15,7 +15,7 @@
             <div class="box-body">
 
                   <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-2 control-label">Kode peminjaman</label>
+                    <label for="inputEmail3" class="col-sm-2 control-label">Nomor Transaksi</label>
                     <div class="col-sm-10">
                         <input type="text" name="kode_peminjaman" value="<?= $kode_peminjaman;?>" class="form-control" readonly>
                     </div>
@@ -64,8 +64,8 @@
                 </div> 
 
                 <div class="box-footer">
-                    <a href="<?= base_url()?>peminjaman" class="btn btn-warning">Cancel</a>
-                    <button type="submit" class="btn btn-Primary">Simpan</button>
+                    <a href="<?= base_url()?>peminjaman" class="btn btn-Primary">Cancel</a>
+                    <button type="submit" class="btn btn-warning">Simpan</button>
                 </div>
         </form>
      </div>

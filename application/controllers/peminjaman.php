@@ -50,42 +50,94 @@ class Peminjaman extends CI_Controller{
         echo json_encode($data);    
     }
 
-    public function kembalikan($id)
-    {
+    // public function kembalikan($id)
+    // {
+    //     $data = $this->m_peminjaman->getDataById_peminjaman($id);
+
+    //     $tgl_kembali = new DateTime($data['tgl_kembali']);
+    //     $tgl_sekarang = new DateTime();
+    //     $selisih = $tgl_sekarang->diff($tgl_kembali)->format("%a");
+    //         if ($tgl_sekarang > $tgl_kembali) {
+    //             $telat = $selisih;
+    //             $denda = $telat * 1000;
+    //         }else{
+    //             $telat = 0;
+    //             $denda = 0;
+    //         }
+
+    //     $kembalikan = array(
+    //         'id_anggota' => $data['id_anggota'],
+    //         'id_buku' => $data['id_buku'],
+    //         'tgl_pinjam' => $data['tgl_pinjam'],
+    //         'tgl_kembali' => $data['tgl_kembali'],
+    //         'tgl_kembalikan' => date('Y-m-d'),
+    //         'telat' => $telat,
+    //         'denda' => $denda
+    //     );
+
+    //     $query = $this->db->insert('pengembalian', $kembalikan);
+    //     if ($query = true) {
+    //         $delete = $this->m_peminjaman->deletePeminjaman($id);
+    //         if ($denda > 0) {
+    //             $this->session->set_flashdata('info', 'Buku diKembalikan. Denda : Rp ' . number_format($denda, 0, ',', '.'));
+    //         }else{
+    //             $this->session->set_flashdata('info', 'Buku dikembalikan tanpa denda');
+    //          redirect('peminjaman');
+    //         }
+    //     }
+    // }
+
+
+
+    public function form_kembalikan($id)
+     {
         $data = $this->m_peminjaman->getDataById_peminjaman($id);
-
-        $tgl_kembali = new DateTime($data['tgl_kembali']);
-        $tgl_sekarang = new DateTime();
-        $selisih = $tgl_sekarang->diff($tgl_kembali)->format("%a");
-            if ($tgl_sekarang > $tgl_kembali) {
-                $telat = $selisih;
-                $denda = $telat * 1000;
-            }else{
-                $telat = 0;
-                $denda = 0;
-            }
-
-        $kembalikan = array(
-            'id_anggota' => $data['id_anggota'],
-            'id_buku' => $data['id_buku'],
-            'tgl_pinjam' => $data['tgl_pinjam'],
-            'tgl_kembali' => $data['tgl_kembali'],
-            'tgl_kembalikan' => date('Y-m-d'),
-            'telat' => $telat,
-            'denda' => $denda
-        );
-
-        $query = $this->db->insert('pengembalian', $kembalikan);
-        if ($query = true) {
-            $delete = $this->m_peminjaman->deletePeminjaman($id);
-            if ($denda > 0) {
-                $this->session->set_flashdata('info', 'Buku diKembalikan. Denda : Rp ' . number_format($denda, 0, ',', '.'));
-            }else{
-                $this->session->set_flashdata('info', 'Buku dikembalikan tanpa denda');
-             redirect('peminjaman');
-            }
+        if (!$data) {
+            redirect('peminjaman');
         }
+        $isi['content'] = 'peminjaman/v_kembalikan';
+        $isi['judul'] = "Form Pengembalian Buku";
+        $isi['peminjaman'] = $data;
+        $isi['konfigurasi'] = $this->m_peminjaman->getKonfigurasiDenda();
+        $this->load->view('v_dashboard', $isi);
     }
+
+
+    // Proses simpan pengembalian
+    public function proses_kembalikan()
+    {
+        $id_peminjaman = $this->input->post('id_peminjaman');
+        $id_anggota = $this->input->post('id_anggota');
+        $id_buku = $this->input->post('id_buku');
+        $tgl_pinjam = $this->input->post('tgl_pinjam');
+        $tgl_kembali = $this->input->post('tgl_kembali');
+        $tgl_kembalikan = date('Y-m-d');
+        $status_denda = $this->input->post('status_denda');
+        $tipe_rusak = $this->input->post('tipe_rusak');
+        $denda = $this->input->post('denda');
+
+        // Pastikan denda angka
+        $denda = is_numeric($denda) ? (float)$denda : 0;
+
+        $data = [
+            'id_anggota' => $id_anggota,
+            'id_buku' => $id_buku,
+            'tgl_pinjam' => $tgl_pinjam,
+            'tgl_kembali' => $tgl_kembali,
+            'tgl_kembalikan' => $tgl_kembalikan,
+            'status_denda' => $status_denda,
+            'tipe_rusak' => $tipe_rusak,
+            'denda' => $denda
+        ];
+
+        $this->db->insert('pengembalian', $data);
+        $this->m_peminjaman->deletePeminjaman($id_peminjaman);
+
+        $this->session->set_flashdata('info', 'Buku berhasil dikembalikan. Denda: Rp ' . number_format($denda, 0, ',', '.'));
+        redirect('peminjaman');
+    }
+
+
 }
 
 
