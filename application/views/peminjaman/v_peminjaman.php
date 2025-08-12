@@ -23,7 +23,7 @@
         <table id="example1" class="table table-bordered table-striped">
             <thead>
                 <tr>
-                    <th>Kode Peminjaman</th>
+                    <th>Nomor Transaksi</th>
                     <th>Peminjam</th>
                     <th>Buku</th>
                     <th>Tanggal Pinjam</th>
@@ -53,7 +53,7 @@
                                     if ($tgl_kembali >= $tgl_sekarang OR $selisih == 0) {
                                         echo "<span class='label label-warning'>dipinjam</span>";
                                     }else{
-                                        echo "Telat <b style = 'color:red;'>" .$selisih. "</b> Hari <br> <span class='label label-danger'>Denda Perhari = 1.000</span>" ;
+                                        echo "<span class='label label-danger'>terlambat ".$selisih." hari</span>";
                                     }
                                 ?>
                             </td>
@@ -67,7 +67,7 @@
                                 ?>
                             </td>
                             <td>
-                                <a href="<?= base_url()?>peminjaman/kembalikan/<?= $row->id_peminjaman;?>" class="btn btn-primary btn-xs" onclick="return confirm('Yakin buku ini mau di kembalikan?')"> Kembalikan</a>
+                                <a href="<?= base_url()?>peminjaman/form_kembalikan/<?= $row->id_peminjaman;?>" class="btn btn-primary btn-xs" onclick="return confirm('Yakin buku ini mau di kembalikan?')"> Kembalikan</a>
                             </td>
                         </tr>
                   <?php  } 

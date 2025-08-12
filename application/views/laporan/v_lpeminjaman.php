@@ -15,7 +15,7 @@
                 margin-left: -60px;
             }
             .btn-pdf {
-                margin-left;-80px
+                margin-left: -80px;
             }
         </style>
     </head>
@@ -52,11 +52,13 @@
         <table id="example1" class="table table-bordered table-striped">
             <thead>
                 <tr>
-                    <th>Id Peminjaman</th>
+                    <th>Kode Peminjaman</th>
                     <th>Peminjam</th>
                     <th>Buku</th>
                     <th>Tanggal Pinjam</th>
                     <th>Tanggal Kembali</th>
+                    <th>Terlambat</th>
+                    <th>Denda</th>
                 </tr>
             </thead>
 
@@ -64,11 +66,13 @@
                 <?php 
                     foreach ($data as $row) {?>
                         <tr>
-                            <td><?= $row->id_peminjaman;?></td>
+                            <td><?= $row->kode_peminjaman;?></td>
                             <td><?= $row->nama_anggota;?></td>
                             <td><?= $row->judul;?></td>
                             <td><?= $row->tgl_pinjam;?></td>
                             <td><?= $row->tgl_kembali;?></td>
+                            <td><?= $row->telat;?></td>
+                            <td><?= $row->denda;?></td>
                         </tr>
                   <?php }
                 ?>

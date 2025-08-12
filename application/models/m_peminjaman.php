@@ -16,7 +16,7 @@ class M_peminjaman Extends CI_Model {
         }
 
         $kodemax = str_pad($kode, 3, "0", STR_PAD_LEFT);
-        $kodejadi = "PM".$kodemax;
+        $kodejadi = "TR".$kodemax;
         return $kodejadi;
     }
 
@@ -51,6 +51,18 @@ class M_peminjaman Extends CI_Model {
     {
         $this->db->where('id_peminjaman', $id);
         return $this->db->delete('peminjaman');
+    }
+
+     public function getKonfigurasiDenda()
+    {
+        return [
+            'terlambat' => 1000,
+            'hilang' => 99000,
+            'rusak' => [
+                'ringan' => 20000,
+                'berat' => 50000
+            ]
+        ];
     }
 }
 

@@ -51,6 +51,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @author		EllisLab Dev Team
  * @link		https://codeigniter.com/userguide3/database/
  */
+#[\AllowDynamicProperties]
 abstract class CI_DB_driver {
 
 	/**
@@ -356,6 +357,56 @@ abstract class CI_DB_driver {
 	protected $_count_string = 'SELECT COUNT(*) AS ';
 
 	// --------------------------------------------------------------------
+
+	/**
+	 * Dummy method that allows Query Builder class to be disabled
+	 * and keep update_string() working.
+	 *
+	 * @return	string
+	 */
+	protected function _compile_order_by()
+	{
+		return '';
+	}
+
+	/**
+	 * Begin Transaction stub
+	 *
+	 * This is a dummy method to be overridden by database drivers.
+	 *
+	 * @return	bool
+	 */
+	protected function _trans_begin()
+	{
+		return TRUE;
+	}
+
+	/**
+	 * Platform-dependent list tables query
+	 *
+	 * This is a stub to be implemented by database drivers.
+	 *
+	 * @param	bool	$constrain_by_prefix
+	 * @return	string|false
+	 */
+	protected function _list_tables($constrain_by_prefix = FALSE)
+	{
+		// Base driver does not implement this.
+		return FALSE;
+	}
+
+	/**
+	 * Dummy _db_set_charset method for base driver.
+	 * Actual drivers should override this if needed.
+	 *
+	 * @param	string	$charset
+	 * @return	bool
+	 */
+	protected function _db_set_charset($charset)
+	{
+		// Base driver does nothing, just return TRUE.
+		return TRUE;
+	}
 
 	/**
 	 * Class constructor
@@ -792,6 +843,20 @@ abstract class CI_DB_driver {
 		return $this->_execute($sql);
 	}
 
+	/**
+	 * Execute the SQL query
+	 *
+	 * This is a dummy method to be overridden by database drivers.
+	 *
+	 * @param	string	$sql
+	 * @return	mixed
+	 */
+	protected function _execute($sql)
+	{
+		// Base driver does not implement this.
+		return FALSE;
+	}
+
 	// --------------------------------------------------------------------
 
 	/**
@@ -960,6 +1025,18 @@ abstract class CI_DB_driver {
 		return FALSE;
 	}
 
+	/**
+	 * Commit Transaction stub
+	 *
+	 * This is a dummy method to be overridden by database drivers.
+	 *
+	 * @return	bool
+	 */
+	protected function _trans_commit()
+	{
+		return TRUE;
+	}
+
 	// --------------------------------------------------------------------
 
 	/**
@@ -981,6 +1058,18 @@ abstract class CI_DB_driver {
 		}
 
 		return FALSE;
+	}
+
+	/**
+	 * Rollback Transaction stub
+	 *
+	 * This is a dummy method to be overridden by database drivers.
+	 *
+	 * @return	bool
+	 */
+	protected function _trans_rollback()
+	{
+		return TRUE;
 	}
 
 	// --------------------------------------------------------------------
@@ -1383,6 +1472,34 @@ abstract class CI_DB_driver {
 		return ($query) ? $query->field_data() : FALSE;
 	}
 
+	/**
+	 * Platform-dependent list columns query stub
+	 *
+	 * This is a stub to be implemented by database drivers.
+	 *
+	 * @param	string	$table	Table name
+	 * @return	string|false
+	 */
+	protected function _list_columns($table)
+	{
+		// Base driver does not implement this.
+		return FALSE;
+	}
+
+	/**
+	 * Platform-dependent field data query stub
+	 *
+	 * This is a stub to be implemented by database drivers.
+	 *
+	 * @param	string	$table	Table name
+	 * @return	string|false
+	 */
+	protected function _field_data($table)
+	{
+		// Base driver does not implement this.
+		return FALSE;
+	}
+
 	// --------------------------------------------------------------------
 
 	/**
@@ -1501,7 +1618,21 @@ abstract class CI_DB_driver {
 			return FALSE;
 		}
 
-		$this->where($where);
+		// Build WHERE clause manually since 'where' method does not exist
+		$where_clause = '';
+		if (is_array($where))
+		{
+			$clauses = array();
+			foreach ($where as $key => $val)
+			{
+				$clauses[] = $this->protect_identifiers($key).' = '.$this->escape($val);
+			}
+			$where_clause = ' WHERE '.implode(' AND ', $clauses);
+		}
+		else
+		{
+			$where_clause = ' WHERE '.$where;
+		}
 
 		$fields = array();
 		foreach ($data as $key => $val)
@@ -1510,6 +1641,8 @@ abstract class CI_DB_driver {
 		}
 
 		$sql = $this->_update($this->protect_identifiers($table, TRUE, NULL, FALSE), $fields);
+		// Append WHERE clause to the generated SQL
+		$sql .= $where_clause;
 		$this->_reset_write();
 		return $sql;
 	}
@@ -1994,6 +2127,28 @@ abstract class CI_DB_driver {
 	 */
 	protected function _reset_select()
 	{
+	}
+
+	/**
+	 * Dummy method that allows Query Builder class to be disabled
+	 * and keep update_string() working.
+	 *
+	 * @return	void
+	 */
+	protected function _reset_write()
+	{
+	}
+
+	/**
+	 * Dummy method that allows Query Builder class to be disabled
+	 * and keep update_string() working.
+	 *
+	 * @param	string	$type
+	 * @return	string
+	 */
+	protected function _compile_wh($type)
+	{
+		return '';
 	}
 
 }
