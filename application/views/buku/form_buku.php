@@ -30,7 +30,7 @@
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">Kategori</label>
                     <div class="col-sm-10">
-                        <select name="id_kategori" class="form-control select2">
+                        <select name="id_kategori" class="form-control select2" required>
                             <option value=""> - Pilih Kategori - </option>
                             <?php 
                                 foreach ($kategori as  $row) {?>
@@ -44,21 +44,21 @@
                  <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">Penulis</label>
                     <div class="col-sm-10">
-                        <input type="text" name="penulis" class="form-control" >
+                        <input type="text" name="penulis" class="form-control" required>
                     </div>
                 </div> 
 
                  <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">Penerbit</label>
                     <div class="col-sm-10">
-                        <input type="text" name="penerbit" class="form-control" >
+                        <input type="text" name="penerbit" class="form-control" required>
                     </div>
                 </div> 
 
                   <div class="form-group">
                     <label for="inputPassword3" class="col-sm-2 control-label">Tahun Terbit</label>
                     <div class="col-sm-10">
-                        <select name="tahun_terbit" class="form-control select2">
+                        <select name="tahun_terbit" class="form-control select2" required>
                             <option value=""> - Pilih Tahun - </option>
                             <?php 
                                 for ($tahun = 1850; $tahun<=2026; $tahun++) {?>
@@ -72,14 +72,14 @@
                  <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">ISBN</label>
                     <div class="col-sm-10">
-                        <input type="text" name="isbn" class="form-control" >
+                        <input type="text" name="isbn" class="form-control" required>
                     </div>
                 </div> 
 
                  <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">Jumlah</label>
                     <div class="col-sm-10">
-                        <input type="number" name="jumlah" class="form-control" >
+                        <input type="number" name="jumlah" class="form-control" required >
                     </div>
                 </div> 
 
