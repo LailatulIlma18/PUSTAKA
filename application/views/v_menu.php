@@ -27,6 +27,7 @@
       <li><a href="<?= base_url() ?>anggota"><i class="fa fa-user"></i> Data Anggota</a></li>
       <li><a href="<?= base_url() ?>kategori"><i class="fa fa-table"></i>Kategori</a></li>
       <li><a href="<?= base_url() ?>buku"><i class="fa fa-book"></i> Buku</a></li>
+      <li><a href="<?= base_url() ?>konfigurasi"><i class="fa fa-gear"></i> Konfigurasi Denda</a></li>
 
       <li class="treeview">
         <a href="#">

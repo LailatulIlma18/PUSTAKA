@@ -1,144 +1,77 @@
-<?php 
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Peminjaman extends CI_Controller{
+class Peminjaman extends CI_Controller {
 
     public function __construct()
     {
         parent::__construct();
-        $this->load->model("m_peminjaman");
+        $this->load->model('M_Peminjaman');
+        $this->load->model('M_Pengembalian');
     }
 
     public function index()
     {
         $isi['content'] = 'peminjaman/v_peminjaman';
-        $isi['judul'] = "Data Peminjaman Buku";
-        $isi ['data'] = $this->m_peminjaman->getDataPeminjaman();
+        $isi['judul']   = "Data Peminjaman Buku";
+        $isi['data']    = $this->M_Peminjaman->getDataPeminjaman();
         $this->load->view('v_dashboard', $isi);
     }
 
     public function tambah_peminjaman()
     {
-        $isi['content'] = 'peminjaman/t_peminjaman';
-        $isi['judul'] = "Form Tambah Peminjaman Buku";
-        $isi['kode_peminjaman'] = $this->m_peminjaman->kode_peminjaman();
-        $isi['peminjam'] = $this->db->get('anggota')->result();
-        $isi['buku'] = $this->db->get('buku')->result();
+        $isi['content']        = 'peminjaman/t_peminjaman';
+        $isi['judul']          = "Form Tambah Peminjaman Buku";
+        $isi['kode_peminjaman'] = $this->M_Peminjaman->kode_peminjaman();
+        $isi['peminjam']       = $this->db->get('anggota')->result();
+        $isi['buku']           = $this->db->get('buku')->result();
         $this->load->view('v_dashboard', $isi);
     }
 
     public function simpan()
     {
-        $data = array(
+        $data = [
             'id_peminjaman' => $this->input->post('id_peminjaman'),
             'kode_peminjaman' => $this->input->post('kode_peminjaman'),
             'id_anggota'    => $this->input->post('id_anggota'),
             'id_buku'       => $this->input->post('id_buku'),
             'tgl_pinjam'    => $this->input->post('tgl_pinjam'),
             'tgl_kembali'   => $this->input->post('tgl_kembali')
-        );
-        $query = $this->db->insert('peminjaman', $data);
-        if ($query) {
-            $this->session->set_flashdata('info', 'Data Transaksi Peminjaman Berhasil Disimpan');
-            redirect ('peminjaman');
-        }
-    }
-
-    public function jumlah_buku()
-    {
-        $id = $this->input->post('id');
-        $data = $this->m_peminjaman->jumlah_buku($id);
-        echo json_encode($data);    
-    }
-
-    // public function kembalikan($id)
-    // {
-    //     $data = $this->m_peminjaman->getDataById_peminjaman($id);
-
-    //     $tgl_kembali = new DateTime($data['tgl_kembali']);
-    //     $tgl_sekarang = new DateTime();
-    //     $selisih = $tgl_sekarang->diff($tgl_kembali)->format("%a");
-    //         if ($tgl_sekarang > $tgl_kembali) {
-    //             $telat = $selisih;
-    //             $denda = $telat * 1000;
-    //         }else{
-    //             $telat = 0;
-    //             $denda = 0;
-    //         }
-
-    //     $kembalikan = array(
-    //         'id_anggota' => $data['id_anggota'],
-    //         'id_buku' => $data['id_buku'],
-    //         'tgl_pinjam' => $data['tgl_pinjam'],
-    //         'tgl_kembali' => $data['tgl_kembali'],
-    //         'tgl_kembalikan' => date('Y-m-d'),
-    //         'telat' => $telat,
-    //         'denda' => $denda
-    //     );
-
-    //     $query = $this->db->insert('pengembalian', $kembalikan);
-    //     if ($query = true) {
-    //         $delete = $this->m_peminjaman->deletePeminjaman($id);
-    //         if ($denda > 0) {
-    //             $this->session->set_flashdata('info', 'Buku diKembalikan. Denda : Rp ' . number_format($denda, 0, ',', '.'));
-    //         }else{
-    //             $this->session->set_flashdata('info', 'Buku dikembalikan tanpa denda');
-    //          redirect('peminjaman');
-    //         }
-    //     }
-    // }
-
-
-
-    public function form_kembalikan($id)
-     {
-        $data = $this->m_peminjaman->getDataById_peminjaman($id);
-        if (!$data) {
-            redirect('peminjaman');
-        }
-        $isi['content'] = 'peminjaman/v_kembalikan';
-        $isi['judul'] = "Form Pengembalian Buku";
-        $isi['peminjaman'] = $data;
-        $isi['konfigurasi'] = $this->m_peminjaman->getKonfigurasiDenda();
-        $this->load->view('v_dashboard', $isi);
-    }
-
-
-    // Proses simpan pengembalian
-    public function proses_kembalikan()
-    {
-        $id_peminjaman = $this->input->post('id_peminjaman');
-        $id_anggota = $this->input->post('id_anggota');
-        $id_buku = $this->input->post('id_buku');
-        $tgl_pinjam = $this->input->post('tgl_pinjam');
-        $tgl_kembali = $this->input->post('tgl_kembali');
-        $tgl_kembalikan = date('Y-m-d');
-        $status_denda = $this->input->post('status_denda');
-        $tipe_rusak = $this->input->post('tipe_rusak');
-        $denda = $this->input->post('denda');
-
-        // Pastikan denda angka
-        $denda = is_numeric($denda) ? (float)$denda : 0;
-
-        $data = [
-            'id_anggota' => $id_anggota,
-            'id_buku' => $id_buku,
-            'tgl_pinjam' => $tgl_pinjam,
-            'tgl_kembali' => $tgl_kembali,
-            'tgl_kembalikan' => $tgl_kembalikan,
-            'status_denda' => $status_denda,
-            'tipe_rusak' => $tipe_rusak,
-            'denda' => $denda
         ];
 
-        $this->db->insert('pengembalian', $data);
-        $this->m_peminjaman->deletePeminjaman($id_peminjaman);
-
-        $this->session->set_flashdata('info', 'Buku berhasil dikembalikan. Denda: Rp ' . number_format($denda, 0, ',', '.'));
+        $this->db->insert('peminjaman', $data);
+        $this->session->set_flashdata('info', 'Data Transaksi Peminjaman Berhasil Disimpan');
         redirect('peminjaman');
     }
 
+    public function form_kembalikan($id)
+    {
+        $data = $this->M_Peminjaman->getDataById_peminjaman($id);
+        if (!$data) redirect('peminjaman');
 
+        $isi['content']     = 'peminjaman/v_kembalikan';
+        $isi['judul']       = "Form Pengembalian Buku";
+        $isi['peminjaman']  = $data;
+        $isi['konfigurasi'] = $this->M_Peminjaman->getKonfigurasiDenda();
+        $this->load->view('v_dashboard', $isi);
+    }
+
+    public function proses_kembalikan()
+    {
+        $data = [
+            'id_peminjaman'   => $this->input->post('id_peminjaman'),
+            'kode_peminjaman'   => $this->input->post('kode_peminjaman'),
+            'id_anggota'      => $this->input->post('id_anggota'),
+            'id_buku'         => $this->input->post('id_buku'),
+            'tgl_pinjam'      => $this->input->post('tgl_pinjam'),
+            'tgl_kembali'     => $this->input->post('tgl_kembali'),
+            'tgl_kembalikan'  => date('Y-m-d'),
+            'status_denda'    => $this->input->post('status_denda'),
+            'tipe_rusak'      => $this->input->post('tipe_rusak'),
+            'denda'           => $this->input->post('denda')
+        ];
+
+        $this->M_Pengembalian->simpan($data);
+        redirect('pengembalian');
+    }
 }
-
-
-?>
