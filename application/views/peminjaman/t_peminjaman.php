@@ -64,7 +64,7 @@
                 </div> 
 
                 <div class="box-footer">
-                    <a href="<?= base_url()?>peminjaman" class="btn btn-Primary">Cancel</a>
+                    <a href="<?= base_url()?>peminjaman" class="btn btn-primary">Cancel</a>
                     <button type="submit" class="btn btn-warning">Simpan</button>
                 </div>
         </form>

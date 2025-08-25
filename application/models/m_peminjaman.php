@@ -53,18 +53,34 @@ class M_peminjaman Extends CI_Model {
         return $this->db->delete('peminjaman');
     }
 
+    public function get_by_id($id)
+    {
+        $this->db->select('peminjaman.*, anggota.nama_anggota, buku.judul');
+        $this->db->from('peminjaman');
+        $this->db->join('anggota', 'anggota.id_anggota = peminjaman.id_anggota');
+        $this->db->join('buku', 'buku.id_buku = peminjaman.id_buku');
+        $this->db->where('peminjaman.id_peminjaman', $id);
+        return $this->db->get()->row();
+    }
+
+   
      public function getKonfigurasiDenda()
     {
         return [
             'terlambat' => 1000,
             'hilang' => 99000,
             'rusak' => [
-                'ringan' => 20000,
-                'berat' => 50000
+                'ringan' => 30000,
+                'berat' => 60000
             ]
         ];
     }
-}
 
+    public function get_denda()
+    {
+        return $this->db->get('konfigurasi_denda')->row_array();
+    }
+   
+}
 
 ?>
