@@ -30,8 +30,30 @@
                                 <td><?= $row['tgl_pinjam']; ?></td>
                                 <td><?= $row['tgl_kembali']; ?></td>
                                 <td><?= $row['tgl_kembalikan']; ?></td>
-                                <td><?= isset($row['status_denda']) ? $row['status_denda'] : '-'; ?></td>
-                                <td><?= isset($row['tipe_rusak']) ? $row['tipe_rusak'] : '-'; ?></td>
+
+                                <td>
+									<?php 
+									if ($row['status_denda'] == 'Terlambat') {
+										$tgl_kembali = new DateTime($row['tgl_kembali']);
+										$tgl_kembalikan = new DateTime($row['tgl_kembalikan']);
+										$selisih = $tgl_kembalikan->diff($tgl_kembali)->days;
+										echo "Terlambat {$selisih} Hari";
+									} elseif ($row['status_denda'] == 'Hilang') {
+										echo "Hilang";
+									} elseif ($row['status_denda'] == 'Rusak') {
+										echo "Rusak";
+									} else {
+										echo "Tepat Waktu";
+									}
+									?>
+								</td>
+
+                                <td>
+								<?= ($row['status_denda'] == 'Rusak')
+                               ? (!empty ($row['tipe_rusak']) ? $row['tipe_rusak'] : '-')
+							   : '-'; ?>
+							   </td>
+
                                 <td>
                                     <?= ($row['denda'] > 0) ? 'Rp' . number_format($row['denda'], 0, ',', '.') : '-'; ?>
                                 </td>

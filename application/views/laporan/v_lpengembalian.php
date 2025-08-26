@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <style type="text/css">
+            .tgl_akhir {
+                margin-left: -20px;
+            }
+            .btn-filter {
+                margin-left: -40px;
+            }
+            .btn-refresh {
+                margin-left: -60px;
+            }
+            .btn-pdf {
+                margin-left: -80px;
+            }
+        </style>
+    </head>
+    <body>
+        
+    <div class="box">
+    <div class="box-header">
+        <form method="POST" action="<?= base_url() ?>laporan/pengembalian">
+            <div class="row">
+                <div class="col-md-3">
+                    <h4 class="text-primary"><b>Filter Laporan Pengembalian</b></h4>
+                </div>
+
+                 <div class="col-md-2">
+                    <input type="text" name="tgl_awal" class="form-control" placeholder="Tanggal Awal" onfocus="(this.type='date')" >
+                </div>
+
+                  <div class="col-md-2">
+                    <input type="text" name="tgl_akhir" class="form-control tgl_akhir" placeholder="Tanggal Akhir" onfocus="(this.type='date')" >
+                </div>
+
+                  <div class="col-md-1">
+                    <button type="submit" class="btn btn-primary btn-block btn-filter"><i class="fa fa-filter"></i>Filter</button>
+                </div>
+
+                  <div class="col-md-2">
+					<a href="<?= base_url() ?>laporan/pengembalian" class="btn btn-warning btn-block btn-refresh"><i class="fa fa-refresh"></i>Refresh</a>
+        </form>
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body">
+        <table id="example1" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Kode Peminjaman</th>
+                    <th>Peminjam</th>
+                    <th>Buku</th>
+                    <th>Tanggal Pinjam</th>
+                    <th>Tanggal Kembali</th>
+					  <th>Tanggal di Kembali</th>
+                    <th>Status</th>
+					 <th>Denda</th>
+
+                </tr>
+            </thead>
+
+            <tbody>
+                <?php 
+                    foreach ($data as $row) {?>
+                        <tr>
+                            <td><?= $row->kode_peminjaman;?></td>
+                            <td><?= $row->nama_anggota;?></td>
+                            <td><?= $row->judul;?></td>
+                            <td><?= $row->tgl_pinjam;?></td>
+                            <td><?= $row->tgl_kembali;?></td>
+                            <td><?= $row->tgl_kembalikan;?></td>
+							 
+							<!-- status Denda -->
+							 <td>
+								<?php 
+								if ($row->status_denda == 'Terlambat') {
+									echo "<span style='color: red;'>Terlambat</span>";
+								} elseif ($row->status_denda == 'Hilang') {
+									echo "<span style='color: orange;'>Hilang</span>";
+								} elseif ($row->status_denda == 'Rusak') {
+									echo "<span style='color: brown;'>Rusak</span>";
+								} else {
+									echo "<span style='color: green;'>Tepat Waktu</span>";
+								}
+								?>
+							 </td>
+
+							 <!-- Denda -->
+							  <td>
+									<?= ($row->denda > 0) ? 'Rp' . number_format($row->denda, 0, ',', '.') : '-'; ?>
+							  </td>
+                        </tr>
+                  <?php }
+                ?>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+    </body>
+    </html>
+

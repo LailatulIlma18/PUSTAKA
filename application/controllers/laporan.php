@@ -29,6 +29,35 @@ class Laporan Extends CI_Controller {
             $this->load->view('v_dashboard', $isi);
     }
 
+
+    // pengembalian
+ 
+public function pengembalian()
+{
+    $tgl_awal = $this->input->post('tgl_awal');
+    $tgl_akhir = $this->input->post('tgl_akhir');
+
+    $this->session->set_userdata('tanggal_awal', $tgl_awal);
+    $this->session->set_userdata('tanggal_akhir', $tgl_akhir);
+
+    $isi['content'] = 'laporan/v_lpengembalian';
+    $isi['judul'] = 'Laporan Pengembalian';
+
+    if (empty($tgl_awal) || empty($tgl_akhir)) {
+        // ambil semua data pengembalian
+        $isi['data'] = $this->m_laporan->getAllDataPengembalian();
+    } else {
+        // filter data pengembalian sesuai tanggal
+        $isi['data'] = $this->m_laporan->filterDataPengembalian($tgl_awal, $tgl_akhir);
+    }
+
+    $this->load->view('v_dashboard', $isi);
+}
+
+
+
+
+
     public function refresh()
     {
             $isi['content'] = 'laporan/v_lpeminjaman';
@@ -37,8 +66,14 @@ class Laporan Extends CI_Controller {
             $this->load->view('v_dashboard', $isi);
     }
 
-
 }
 
 
 ?>
+
+
+
+
+
+
+

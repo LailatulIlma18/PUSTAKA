@@ -53,6 +53,8 @@
         </a>
         <ul class="treeview-menu">
           <li><a href="<?= base_url()?>laporan/peminjaman"><i class="fa  fa-file-text"></i>Laporan Peminjaman</a></li>
+					<li><a href="<?= base_url()?>laporan/pengembalian"><i class="fa  fa-file-text"></i>Laporan Pengembalian</a></li>
+        </ul>
         </ul>
       </li>
 
