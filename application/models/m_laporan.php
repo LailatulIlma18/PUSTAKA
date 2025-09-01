@@ -22,11 +22,11 @@ class M_laporan extends CI_Model {
         return $this->db->get()->result();
     }
 
- // pengembalian
+ // ------------------- DATA PENGEMBALIAN -------------------
    
 public function getAllDataPengembalian()
 {
-    return $this->db->select('pengembalian.kode_peminjaman, anggota.nama_anggota, buku.judul, pengembalian.tgl_pinjam, pengembalian.tgl_kembali, pengembalian.tgl_kembalikan,  pengembalian.status_denda, pengembalian.tipe_rusak, pengembalian.telat, pengembalian.denda')
+    return $this->db->select('pengembalian.kode_peminjaman, anggota.nama_anggota, buku.judul, pengembalian.tgl_pinjam, pengembalian.tgl_kembali, pengembalian.tgl_kembalikan, pengembalian.telat, pengembalian.denda, pengembalian.status_denda, pengembalian.tipe_rusak')
                     ->from('pengembalian')
                     ->join('anggota', 'anggota.id_anggota = pengembalian.id_anggota')
                     ->join('buku', 'buku.id_buku = pengembalian.id_buku')
@@ -36,7 +36,7 @@ public function getAllDataPengembalian()
 
 public function filterDataPengembalian($tgl_awal, $tgl_akhir)
 {
-    return $this->db->select('pengembalian.kode_peminjaman, anggota.nama_anggota, buku.judul, pengembalian.tgl_pinjam, pengembalian.tgl_kembali, pengembalian.tgl_kembalikan,  pengembalian.status_denda, pengembalian.tipe_rusak, pengembalian.telat, pengembalian.denda')
+    return $this->db->select('pengembalian.kode_peminjaman, anggota.nama_anggota, buku.judul, pengembalian.tgl_pinjam, pengembalian.tgl_kembali, pengembalian.tgl_kembalikan, pengembalian.telat, pengembalian.denda, pengembalian.status_denda, pengembalian.tipe_rusak')
                     ->from('pengembalian')
                     ->join('anggota', 'anggota.id_anggota = pengembalian.id_anggota')
                     ->join('buku', 'buku.id_buku = pengembalian.id_buku')
@@ -45,10 +45,8 @@ public function filterDataPengembalian($tgl_awal, $tgl_akhir)
                     ->get()
                     ->result();
 }
-
-
-
 }
 
 
 ?>
+
