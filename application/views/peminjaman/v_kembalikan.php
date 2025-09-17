@@ -10,7 +10,7 @@ $selisih       = $tgl_kembali->diff($tgl_sekarang)->days;
 
 if ($tgl_sekarang > $tgl_kembali) {
     $hari_terlambat  = $selisih;
-    $denda_terlambat = $hari_terlambat * 1000;
+    $denda_terlambat = $hari_terlambat * $konfigurasi['terlambat']; 
 } else {
     $hari_terlambat  = 0;
     $denda_terlambat = 0;
@@ -59,7 +59,6 @@ if ($tgl_sekarang > $tgl_kembali) {
                     <label class="col-sm-2 control-label">Status Denda</label>
                     <div class="col-sm-10">
                         <select name="status_denda" id="status_denda" class="form-control" required>
-                            <!-- <option value="">-- Pilih Status Denda --</option> -->
                             <option value="Terlambat">Terlambat</option>
                             <option value="Hilang">Hilang</option>
                             <option value="Rusak">Rusak</option>
@@ -95,8 +94,8 @@ if ($tgl_sekarang > $tgl_kembali) {
             </div>
 
             <div class="box-footer">
-                <a href="<?= base_url('peminjaman'); ?>" class="btn btn-primary">Cancel</a>
-                <button type="submit" class="btn btn-warning">Kembalikan</button>
+                <a href="<?= base_url('peminjaman'); ?>" class="btn btn-warning">Cancel</a>
+                <button type="submit" class="btn btn-primary">Kembalikan</button>
             </div>
         </form>
     </div>

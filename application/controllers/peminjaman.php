@@ -10,13 +10,23 @@ class Peminjaman extends CI_Controller {
         $this->load->model('M_Pengembalian');
     }
 
-    public function index()
-    {
-        $isi['content'] = 'peminjaman/v_peminjaman';
-        $isi['judul']   = "Data Peminjaman Buku";
-        $isi['data']    = $this->M_Peminjaman->getDataPeminjaman();
-        $this->load->view('v_dashboard', $isi);
-    }
+	public function index()
+{
+    $isi['content'] = 'peminjaman/v_peminjaman';
+    $isi['judul']   = "Data Peminjaman Buku";
+    $isi['data']    = $this->M_Peminjaman->getDataPeminjaman();
+
+    
+    $konfigurasi_denda = $this->M_Peminjaman->getKonfigurasiDenda();
+
+    
+    $denda_per_hari = isset($konfigurasi_denda['terlambat']) ? $konfigurasi_denda['terlambat'] : 0;
+
+    
+    $isi['denda_per_hari'] = $denda_per_hari;
+
+    $this->load->view('v_dashboard', $isi);
+}
 
     public function tambah_peminjaman()
     {

@@ -58,14 +58,17 @@
                                 ?>
                             </td>
                             <td>
-                                <?php 
-                                    if ($tgl_kembali < $tgl_sekarang && $selisih > 0) {
-                                        echo "Rp " . number_format($selisih * 1000, 0, ',', '.');
-                                    }else{
-                                        echo "_";
-                                    }
-                                ?>
-                            </td>
+                               <?php 
+                                if ($tgl_kembali < $tgl_sekarang && $selisih > 0) {
+                                 
+                                 $total_denda = $selisih * $denda_per_hari;
+                                echo "Rp " . number_format($total_denda, 0, ',', '.');
+                                } else {
+                                echo "_";
+                                   }
+                                 ?>
+                             </td>
+
                             <td>
                                 <a href="<?= base_url()?>peminjaman/form_kembalikan/<?= $row->id_peminjaman;?>" class="btn btn-primary btn-xs" onclick="return confirm('Yakin buku ini mau di kembalikan?')"> Kembalikan</a>
                             </td>

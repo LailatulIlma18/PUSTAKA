@@ -63,19 +63,27 @@ class M_peminjaman Extends CI_Model {
         return $this->db->get()->row();
     }
 
-   
-     public function getKonfigurasiDenda()
-    {
-        return [
-            'terlambat' => 1000,
-            'hilang' => 99000,
-            'rusak' => [
-                'ringan' => 30000,
-                'berat' => 60000
-            ]
-        ];
-    }
 
+public function getKonfigurasiDenda()
+{
+    
+    $terlambat = $this->db->get_where('konfigurasi_denda', ['jenis' => 'terlambat'])->row_array();
+    
+    
+    $hilang = $this->db->get_where('konfigurasi_denda', ['jenis' => 'hilang'])->row_array();
+
+
+    $rusak = $this->db->get_where('konfigurasi_denda', ['jenis' => 'rusak'])->row_array();
+
+    return [
+        'terlambat' => $terlambat['denda_per_hari'],
+        'hilang'    => $hilang['hilang'],
+        'rusak'     => [
+            'ringan' => $rusak['denda_ringan'],
+            'berat'  => $rusak['denda_berat']
+        ]
+    ];
+}  
     public function get_denda()
     {
         return $this->db->get('konfigurasi_denda')->row_array();
