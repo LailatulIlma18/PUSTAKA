@@ -6,13 +6,13 @@
 
 ?>
 
-<!-- <div class="row">
+<div class="row">
     <div class="col-md-12">
-        <a href="kategori/tambah_kategori" class="btn btn-success"><i class="fa fa-plus"></i> Tambah Kategori</a>
+        <a href="konfigurasi/tambah_konfigurasi" class="btn btn-success"><i class="fa fa-plus"></i> Tambah Konfigurasi</a>
     </div>
-</div> -->
+</div>
 
-<!-- <br> -->
+<br>
 
 <div class="box">
     <div class="box-header">
@@ -28,10 +28,10 @@
                     <th>Denda Perhari</th>
                     <th>Denda Perbulan</th>
                     <th>Denda Pertahun</th>
-                    <th>Denda Ringan</th>
-                    <th>Denda Berat</th>
-                    <!-- <th>Waktu </th>
-                    <th>Aksi</th> -->
+                    <th>Rusak Ringan</th>
+                    <th>Rusak Berat</th>
+					 <th>Denda Hilang</th>
+                    <th>Aksi</th> 
                 </tr>
             </thead>
 
@@ -46,12 +46,11 @@
                             <td><?= $row->denda_per_tahun;?></td>
                             <td><?= $row->denda_ringan;?></td>
                             <td><?= $row->denda_berat;?></td>
-                         
-
-                            <!-- <td>
-                                 <a href="<?= base_url()?>kategori/edit/<?= $row->id_kategori;?>" class="btn btn-success btn-xs">Edit</a>
-                                 <a href="<?= base_url()?>kategori/hapus/<?= $row->id_kategori;?>" class="btn btn-danger btn-xs" onclick="return confirm('Yakin Mau Menghapus?');">Hapus</a>
-                            </td>  -->
+							<td><?= $row->hilang;?></td>
+                            <td>
+                                 <a href="<?= base_url()?>konfigurasi/edit/<?= $row->id_denda;?>" class="btn btn-success btn-xs">Edit</a>
+                                 <a href="<?= base_url()?>konfigurasi/hapus/<?= $row->id_denda;?>" class="btn btn-danger btn-xs" onclick="return confirm('Yakin Mau Menghapus?');">Hapus</a>
+                            </td> 
                         </tr>
                   <?php  } 
                 ?>    
