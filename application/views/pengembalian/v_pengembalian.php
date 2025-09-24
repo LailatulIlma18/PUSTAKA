@@ -18,19 +18,22 @@
                     <th>Denda</th>
                 </tr>
             </thead>
-
             <tbody>
                  
-                <?php 
+                  <?php 
                         foreach ($data as $row) {?>
                             <tr>
                                 <td><?= $row['kode_peminjaman']; ?></td>
                                 <td><?= $row['nama_anggota']; ?></td>
                                 <td><?= $row['judul']; ?></td>
-                                <td><?= $row['tgl_pinjam']; ?></td>
-                                <td><?= $row['tgl_kembali']; ?></td>
-                                <td><?= $row['tgl_kembalikan']; ?></td>
-
+                                <td><?= date('d F Y', strtotime($row['tgl_pinjam'])); ?></td>
+                                <td><?= date('d F Y', strtotime($row['tgl_kembali'])); ?></td>
+								<td>
+									<?= !empty($row['tgl_kembalikan'])
+									? date ('d F Y', strtotime($row['tgl_kembalikan']))
+									: '-'; ?>
+								</td>
+                                 
                                 <td>
 									<?php 
 									if ($row['status_denda'] == 'Terlambat') {
@@ -59,11 +62,9 @@
                                 </td>
                             </tr>
                        <?php }
-                ?>
-
+                     ?>
             </tbody>
         </table>
-        
     </div>
 </div>
 

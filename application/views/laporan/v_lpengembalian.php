@@ -16,6 +16,7 @@
         .status-hilang { color: orange; font-weight: bold; }
     </style>
 </head>
+
 <body>
 <div class="box">
     <div class="box-header">
@@ -65,8 +66,8 @@
                     <td><?= $row->kode_peminjaman; ?></td>
                     <td><?= $row->nama_anggota; ?></td>
                     <td><?= $row->judul; ?></td>
-                    <td><?= $row->tgl_pinjam; ?></td>
-                    <td><?= $row->tgl_kembali; ?></td>
+                    <td><?= date('d F Y', strtotime($row->tgl_pinjam)); ?></td>
+                    <td><?= date('d F Y', strtotime($row->tgl_kembali)); ?></td>
 
                     <!-- Status + Jumlah Hari -->
                     <?php 
@@ -111,7 +112,8 @@
                         <?= ($row->denda > 0) ? 'Rp' . number_format($row->denda, 0, ',', '.') : '-'; ?>
                     </td>
                 </tr>
-                <?php } ?>
+                <?php }
+			  ?>
             </tbody>
         </table>
     </div>

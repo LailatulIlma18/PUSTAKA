@@ -19,7 +19,8 @@
         .badge-warning { background-color: orange; }
         .badge-success { background-color: green; }
     </style>
-</head>
+</head> 
+
 <body>
 <div class="box">
     <div class="box-header">
@@ -67,8 +68,8 @@
                         <td><?= $row->kode_peminjaman; ?></td>
                         <td><?= $row->nama_anggota; ?></td>
                         <td><?= $row->judul; ?></td>
-                        <td><?= $row->tgl_pinjam; ?></td>
-                        <td><?= $row->tgl_kembali; ?></td>
+                        <td><?= date('d F Y', strtotime($row->tgl_pinjam)); ?></td>
+                         <td><?= date('d F Y', strtotime($row->tgl_kembali)); ?></td>
                         <td>
                             <?php if (empty($row->tgl_kembalikan)) { ?>
                                 <span class="badge badge-warning">dipinjam</span>
@@ -77,7 +78,8 @@
                             <?php } ?>
                         </td>
                     </tr>
-                <?php } ?>
+                <?php }
+			   ?>
             </tbody>
         </table>
     </div>
