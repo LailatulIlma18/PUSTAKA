@@ -4,6 +4,21 @@
             <h3 class="box-title"><?= $judul;?></h3>
         </div>
 
+        <?php
+			if($this->session->flashdata('error')): ?>
+            <div
+			 class="alert alert-danger">
+            <?= $this->session->flashdata('error'); ?>
+            </div>
+            <?php  endif; ?>
+
+           <?php 
+		   if($this->session->flashdata('info')): ?>
+          <div class="alert alert-success">
+          <?= $this->session->flashdata('info'); ?>
+          </div>
+         <?php endif; ?>
+
         <form method="post" action="<?= base_url()?>buku/simpan" class="form-horizontal">
             <div class="box-body">
                   <!-- <div class="form-group">
@@ -72,7 +87,7 @@
                  <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">ISBN</label>
                     <div class="col-sm-10">
-                        <input type="number" name="isbn" class="form-control" required>
+                        <input type="text" name="isbn" class="form-control" required>
                     </div>
                 </div> 
 

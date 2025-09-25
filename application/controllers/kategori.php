@@ -25,7 +25,7 @@ class Kategori extends CI_Controller{
         public function simpan()
         {
 			 $this->load->library('form_validation');
-             $this->form_validation->set_rules('nama_kategori', 'Nama Kategori', 'required|trim');
+             $this->form_validation->set_rules('nama_kategori', 'Nama Kategori', 'required');
 
 			 if ($this->form_validation->run() == FALSE) {
 				$this->session->set_flashdata('error',validation_errors());
@@ -52,7 +52,7 @@ class Kategori extends CI_Controller{
           public function update()
         {
 			$this->load->library('form_validation');
-            $this->form_validation->set_rules('nama_kategori', 'Nama Kategori', 'required|trim');
+            $this->form_validation->set_rules('nama_kategori', 'Nama Kategori', 'required');
 
             $id_kategori = $this->input->post('id_kategori');
 

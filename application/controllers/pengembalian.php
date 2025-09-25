@@ -11,7 +11,7 @@ class Pengembalian extends CI_Controller {
     public function index() {
         $isi['content'] = 'pengembalian/v_pengembalian';
         $isi['judul']   = 'Pengembalian Buku';
-        $isi['data']    = $this->M_Pengembalian->getAllData();
+        $isi['data']    = $this->M_Pengembalian->getAllData('DESC');
         $this->load->view('v_dashboard', $isi);
     }
    

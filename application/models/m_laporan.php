@@ -2,51 +2,64 @@
 
 class M_laporan extends CI_Model {
 
-    public function getAllData()
+    // =========================
+    // Laporan Peminjaman
+    // =========================
+    public function getAllData($sort = 'DESC')
     {
-        $this->db->select("*");
-        $this->db->from("peminjaman");
-        $this->db->join('anggota','peminjaman.id_anggota = anggota.id_anggota');
-        $this->db->join('buku','peminjaman.id_buku = buku.id_buku');
-        return $this->db->get()->result();
+        return $this->db->select('p.*, a.nama_anggota, b.judul')
+                        ->from('peminjaman p')
+                        ->join('anggota a', 'a.id_anggota = p.id_anggota')
+                        ->join('buku b', 'b.id_buku = p.id_buku')
+                        ->order_by('p.tgl_pinjam', $sort)
+                        ->order_by('p.id_peminjaman', 'DESC')
+                        ->get()
+                        ->result();
     }
 
-    public function filterData($tgl_awal, $tgl_akhir)
+    public function filterData($tgl_awal, $tgl_akhir, $sort = 'DESC')
     {
-        $this->db->select("*");
-        $this->db->from("peminjaman");
-        $this->db->join('anggota','peminjaman.id_anggota = anggota.id_anggota');
-        $this->db->join('buku','peminjaman.id_buku = buku.id_buku');
-        $this->db->where('peminjaman.tgl_pinjam >=', $tgl_awal);
-        $this->db->where('peminjaman.tgl_pinjam <=', $tgl_akhir);
-        return $this->db->get()->result();
+        return $this->db->select('p.*, a.nama_anggota, b.judul')
+                        ->from('peminjaman p')
+                        ->join('anggota a', 'a.id_anggota = p.id_anggota')
+                        ->join('buku b', 'b.id_buku = p.id_buku')
+                        ->where('p.tgl_pinjam >=', $tgl_awal)
+                        ->where('p.tgl_pinjam <=', $tgl_akhir)
+                        ->order_by('p.tgl_pinjam', $sort)
+                        ->order_by('p.id_peminjaman', 'DESC')
+                        ->get()
+                        ->result();
     }
 
- // ------------------- DATA PENGEMBALIAN -------------------
-   
-public function getAllDataPengembalian()
-{
-    return $this->db->select('pengembalian.kode_peminjaman, anggota.nama_anggota, buku.judul, pengembalian.tgl_pinjam, pengembalian.tgl_kembali, pengembalian.tgl_kembalikan, pengembalian.telat, pengembalian.denda, pengembalian.status_denda, pengembalian.tipe_rusak')
-                    ->from('pengembalian')
-                    ->join('anggota', 'anggota.id_anggota = pengembalian.id_anggota')
-                    ->join('buku', 'buku.id_buku = pengembalian.id_buku')
-                    ->get()
-                    ->result();
-}
+    // =========================
+    // Laporan Pengembalian
+    // =========================
+    public function getAllDataPengembalian($sort = 'DESC')
+    {
+        return $this->db->select('pg.kode_peminjaman, a.nama_anggota, b.judul, pg.tgl_pinjam, pg.tgl_kembali, pg.tgl_kembalikan, pg.telat, pg.denda, pg.status_denda, pg.tipe_rusak')
+                        ->from('pengembalian pg')
+                        ->join('anggota a', 'a.id_anggota = pg.id_anggota')
+                        ->join('buku b', 'b.id_buku = pg.id_buku')
+                        ->order_by('pg.tgl_kembalikan', $sort)
+                        ->order_by('pg.id_pengembalian', 'DESC')
+                        ->get()
+                        ->result();
+    }
 
-public function filterDataPengembalian($tgl_awal, $tgl_akhir)
-{
-    return $this->db->select('pengembalian.kode_peminjaman, anggota.nama_anggota, buku.judul, pengembalian.tgl_pinjam, pengembalian.tgl_kembali, pengembalian.tgl_kembalikan, pengembalian.telat, pengembalian.denda, pengembalian.status_denda, pengembalian.tipe_rusak')
-                    ->from('pengembalian')
-                    ->join('anggota', 'anggota.id_anggota = pengembalian.id_anggota')
-                    ->join('buku', 'buku.id_buku = pengembalian.id_buku')
-                    ->where('pengembalian.tgl_kembali >=', $tgl_awal)
-                    ->where('pengembalian.tgl_kembali <=', $tgl_akhir)
-                    ->get()
-                    ->result();
-}
-}
+    public function filterDataPengembalian($tgl_awal, $tgl_akhir, $sort = 'DESC')
+    {
+        return $this->db->select('pg.kode_peminjaman, a.nama_anggota, b.judul, pg.tgl_pinjam, pg.tgl_kembali, pg.tgl_kembalikan, pg.telat, pg.denda, pg.status_denda, pg.tipe_rusak')
+                        ->from('pengembalian pg')
+                        ->join('anggota a', 'a.id_anggota = pg.id_anggota')
+                        ->join('buku b', 'b.id_buku = pg.id_buku')
+                        ->where('pg.tgl_kembali >=', $tgl_awal)
+                        ->where('pg.tgl_kembali <=', $tgl_akhir)
+                        ->order_by('pg.tgl_kembalikan', $sort)
+                        ->order_by('pg.id_pengembalian', 'DESC')
+                        ->get()
+                        ->result();
+    }
 
+}
 
 ?>
-

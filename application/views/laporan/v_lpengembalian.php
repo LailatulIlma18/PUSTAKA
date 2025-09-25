@@ -8,6 +8,7 @@
         .tgl_akhir { margin-left: -20px; }
         .btn-filter { margin-left: -40px; }
         .btn-refresh { margin-left: -60px; }
+        .btn-excel { margin-left: -80px; }
 
         /* Warna status */
         .status-tepat { color: green; font-weight: bold; }
@@ -41,6 +42,11 @@
                         <i class="fa fa-refresh"></i> Refresh
                     </a>
                 </div> 
+                <div class="row">
+                 <div class="col-md-2">
+                    <a href="<?= base_url('laporan/export_pengembalian'); ?>"  class="btn btn-success btn-block btn-excel"> <i class="fa fa-file-excel-o"></i> Export Excel </a>
+                 </div>
+                </div>
             </div>
         </form>
     </div>

@@ -8,7 +8,8 @@
         .tgl_akhir { margin-left: -20px; }
         .btn-filter { margin-left: -40px; }
         .btn-refresh { margin-left: -60px; }
-        .btn-pdf { margin-left: -80px; }
+        /* .btn-pdf { margin-left: -80px; } */
+        .btn-excel { margin-left: -80px; }
         .badge {
             padding: 4px 10px;
             border-radius: 4px;
@@ -45,6 +46,9 @@
                 <div class="col-md-2">
                     <a href="<?= base_url() ?>laporan/refresh" class="btn btn-warning btn-block btn-refresh"><i class="fa fa-refresh"></i> Refresh</a>
                 </div>
+                  <div class="col-md-2">
+                    <a href="<?= base_url('laporan/export_peminjaman'); ?>" class="btn btn-success btn-block btn-excel">       <i class="fa fa-file-excel-o"></i> Export Excel </a>
+                </div> 
             </div>
         </form>
     </div>

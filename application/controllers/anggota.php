@@ -28,13 +28,13 @@ public function simpan()
 {
     $this->load->library('form_validation');
 
-     $this->form_validation->set_rules('kode_anggota', 'Kode Anggota', 'required|trim');
-    $this->form_validation->set_rules('nis', 'NIS', 'required|trim');
-    $this->form_validation->set_rules('nama_anggota', 'Nama Anggota', 'required|trim');
-    $this->form_validation->set_rules('email', 'Email', 'required|valid_email|trim');
+     $this->form_validation->set_rules('kode_anggota', 'Kode Anggota', 'required');
+    $this->form_validation->set_rules('nis', 'NIS', 'required');
+    $this->form_validation->set_rules('nama_anggota', 'Nama Anggota', 'required');
+    $this->form_validation->set_rules('email', 'Email', 'required|valid_email');
     $this->form_validation->set_rules('jenis_kelamin', 'Jenis Kelamin', 'required');
-    $this->form_validation->set_rules('alamat', 'Alamat', 'required|trim');
-    $this->form_validation->set_rules('no_telp', 'Nomor Telepon', 'required|numeric|trim');
+    $this->form_validation->set_rules('alamat', 'Alamat', 'required');
+    $this->form_validation->set_rules('no_telp', 'Nomor Telepon', 'required|numeric');
 
     if ($this->form_validation->run() == FALSE) {
         $this->session->set_flashdata('error', validation_errors());
@@ -70,13 +70,13 @@ public function simpan()
     {
 		$this->load->library('form_validation');
 
-		 $this->form_validation->set_rules('kode_anggota', 'Kode Anggota', 'required|trim');
+		 $this->form_validation->set_rules('kode_anggota', 'Kode Anggota', 'required');
          $this->form_validation->set_rules('nis', 'NIS', 'required|trim');
-         $this->form_validation->set_rules('nama_anggota', 'Nama Anggota', 'required|trim');
-         $this->form_validation->set_rules('email', 'Email', 'required|valid_email|trim');
+         $this->form_validation->set_rules('nama_anggota', 'Nama Anggota', 'required');
+         $this->form_validation->set_rules('email', 'Email', 'required|valid_email');
          $this->form_validation->set_rules('jenis_kelamin', 'Jenis Kelamin', 'required');
-         $this->form_validation->set_rules('alamat', 'Alamat', 'required|trim');
-         $this->form_validation->set_rules('no_telp', 'No. Telepon', 'required|numeric|trim');
+         $this->form_validation->set_rules('alamat', 'Alamat', 'required');
+         $this->form_validation->set_rules('no_telp', 'No. Telepon', 'required|numeric');
 
         $id_anggota = $this->input->post('id_anggota');
 
