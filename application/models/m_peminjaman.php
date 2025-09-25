@@ -1,6 +1,6 @@
 <?php 
 
-class M_peminjaman Extends CI_Model {
+class M_peminjaman extends CI_Model {
 
     public function kode_peminjaman()
     {
@@ -79,8 +79,8 @@ public function getKonfigurasiDenda()
         'terlambat' => $terlambat['denda_per_hari'],
         'hilang'    => $hilang['hilang'],
         'rusak'     => [
-            'ringan' => $rusak['denda_ringan'],
-            'berat'  => $rusak['denda_berat']
+        'ringan' => $rusak['denda_ringan'],
+        'berat'  => $rusak['denda_berat']
         ]
     ];
 }  

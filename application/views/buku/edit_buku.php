@@ -4,14 +4,24 @@
             <h3 class="box-title"><?= $judul;?></h3>
         </div>
 
+        <?php
+			if($this->session->flashdata('error')): ?>
+            <div
+			 class="alert alert-danger">
+            <?= $this->session->flashdata('error'); ?>
+            </div>
+            <?php  endif; ?>
+
+           <?php 
+		   if($this->session->flashdata('info')): ?>
+          <div class="alert alert-success">
+          <?= $this->session->flashdata('info'); ?>
+          </div>
+         <?php endif; ?>
+
         <form method="post" action="<?= base_url()?>buku/update" class="form-horizontal">
             <div class="box-body">
-                  <!-- <div class="form-group"> -->
-                    <!-- <label for="inputEmail3" class="col-sm-2 control-label">Id Buku</label> -->
-                    <!-- <div class="col-sm-10"> -->
                         <input type="hidden" name="id_buku" value="<?= $data['id_buku']; ?>" class="form-control" >
-                    <!-- </div> -->
-                <!-- </div>  -->
 
                  <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">Kode Buku</label>
@@ -80,7 +90,7 @@
                  <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">ISBN</label>
                     <div class="col-sm-10">
-                        <input type="text" name="isbn"  value="<?= $data['isbn'];?>" class="form-control" >
+                        <input type="isbn" name="isbn"  value="<?= $data['isbn'];?>" class="form-control" >
                     </div>
                 </div> 
 
@@ -92,8 +102,8 @@
                 </div> 
 
                 <div class="box-footer">
-                    <a href="<?= base_url()?>buku" class="btn btn-Primary">Cancel</a>
-                    <button type="submit" class="btn btn-warning">update</button>
+                    <a href="<?= base_url()?>buku" class="btn btn-warning">Cancel</a>
+                    <button type="submit" class="btn btn-primary">update</button>
                 </div>
             
         </form>

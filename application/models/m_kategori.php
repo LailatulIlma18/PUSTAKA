@@ -1,6 +1,6 @@
 <?php 
 
-class M_kategori Extends CI_Model {
+class M_kategori extends CI_Model {
 
     public function edit($id)
     {
@@ -11,17 +11,14 @@ class M_kategori Extends CI_Model {
     public function update($id_kategori, $data)
     {
         $this->db->where('id_kategori', $id_kategori);
-        $this->db->update('kategori', $data);
+        return $this->db->update('kategori', $data);
     }
 
-    public function hapus($id_kategori)
+   public function hapus($id)
     {
         $this->db->where('id_kategori', $id);
-        $this->db->delete('kategori');
+        return $this->db->delete('kategori');
     }
 }
-
-
-
 
 ?>

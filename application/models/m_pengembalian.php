@@ -14,8 +14,10 @@ class M_Pengembalian extends CI_Model {
         $this->db->insert('pengembalian', $data);
         if (isset($data['id_peminjaman'])) {
         $this->db->where('id_peminjaman', $data['id_peminjaman']);
-        $this->db->delete('peminjaman');
+        return $this->db->delete('peminjaman');
     }
     }
 
 }
+
+?>

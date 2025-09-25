@@ -4,6 +4,18 @@
             <h3 class="box-title"><?= $judul;?></h3>
         </div>
 
+		<?php if ($this->session->flashdata('error')): ?>
+            <div class="alert alert-danger">
+                <?= $this->session->flashdata('error'); ?>
+            </div>
+        <?php endif; ?>
+
+		  <?php if ($this->session->flashdata('success')): ?>
+            <div class="alert alert-success">
+                <?= $this->session->flashdata('success'); ?>
+            </div>
+        <?php endif; ?>
+
         <form method="post" action="<?= base_url()?>konfigurasi/update" class="form-horizontal">
             <div class="box-body">
                 <div class="form-group">
@@ -70,7 +82,7 @@
 
                 <div class="box-footer">
                     <a href="<?= base_url()?>konfigurasi" class="btn btn-warning">Cancel</a>
-                    <button type="submit" class="btn btn-primary">Simpan</button>
+                    <button type="submit" class="btn btn-primary">Update</button>
                 </div>
             
         </form>

@@ -1,6 +1,6 @@
 <?php 
 
-class kategori Extends CI_Controller{
+class Kategori extends CI_Controller{
 
     public function __construct()
     {
@@ -24,14 +24,23 @@ class kategori Extends CI_Controller{
 
         public function simpan()
         {
-            $data['nama_kategori'] = $this->input->post('nama_kategori');
-            $query = $this->db->insert('kategori', $data);
-            if ($query = true) {
-                $this->session->set_flashdata('info', 'Data Berhasil di Simpan');
-                redirect ('kategori');
-            }
-        }
+			 $this->load->library('form_validation');
+             $this->form_validation->set_rules('nama_kategori', 'Nama Kategori', 'required|trim');
 
+			 if ($this->form_validation->run() == FALSE) {
+				$this->session->set_flashdata('error',validation_errors());
+				redirect('kategori/tambah_kategori');
+			 } else {
+            $data['nama_kategori'] = $this->input->post('nama_kategori', TRUE);
+            $query = $this->db->insert('kategori', $data);
+            if ($query) {
+                $this->session->set_flashdata('info', 'Data Berhasil di Simpan');
+            } else {
+				  $this->session->set_flashdata('info', 'Data Gagal di Simpan');
+			}
+			redirect ('kategori');
+        }
+	}
         public function edit($id)
     {
         $isi['content'] = 'kategori/edit_kategori';
@@ -42,26 +51,34 @@ class kategori Extends CI_Controller{
 
           public function update()
         {
+			$this->load->library('form_validation');
+            $this->form_validation->set_rules('nama_kategori', 'Nama Kategori', 'required|trim');
+
             $id_kategori = $this->input->post('id_kategori');
-            $data['nama_kategori'] = $this->input->post('nama_kategori');
+
+			if ($this->form_validation->run() == FALSE) {
+            $this->session->set_flashdata('error', validation_errors());
+            redirect('kategori/edit/' . $id_kategori);
+            } else {
+            $data['nama_kategori'] = $this->input->post('nama_kategori',TRUE);
             $query = $this->m_kategori->update($id_kategori, $data);
-            if ($query = true) {
+            if ($query) {
                 $this->session->set_flashdata('info', 'Data Berhasil di Update');
-                redirect ('kategori');
-            }
+            } else {
+				  $this->session->set_flashdata('info', 'Data Gagal di Update');
+			}
+			 redirect ('kategori');
         }
-
-         public function hapus($id)
-        {
-            $query = $this->m_kategori->hapus($id);
-            if ($query = true) {
-                $this->session->set_flashdata('info', 'Data Berhasil di Hapus');
-                redirect ('kategori');
-            }
-        }
+	}
+         public function hapus ($id)
+     {
+        $query = $this->m_kategori->hapus($id);
+        if ($query) {
+            $this->session->set_flashdata('info', 'Data Berhasil di Hapus');
+        } else {
+			 $this->session->set_flashdata('info', 'Data Gagal di Hapus');
+		}
+		 redirect('kategori');
+     }
 }
-
-
-
-
 ?>

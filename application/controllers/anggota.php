@@ -1,6 +1,6 @@
 <?php
 
-class Anggota Extends CI_Controller{
+class Anggota extends CI_Controller{
 
     public function __construct()
     {
@@ -22,28 +22,42 @@ class Anggota Extends CI_Controller{
         $isi['judul'] = 'Form Tambah Anggota';
         $isi['kode_anggota'] = $this->m_anggota->kode_anggota();
         $this->load->view('v_dashboard', $isi);
-    }
+		}
 
-    public function simpan()
-    {
+public function simpan()
+{
+    $this->load->library('form_validation');
+
+     $this->form_validation->set_rules('kode_anggota', 'Kode Anggota', 'required|trim');
+    $this->form_validation->set_rules('nis', 'NIS', 'required|trim');
+    $this->form_validation->set_rules('nama_anggota', 'Nama Anggota', 'required|trim');
+    $this->form_validation->set_rules('email', 'Email', 'required|valid_email|trim');
+    $this->form_validation->set_rules('jenis_kelamin', 'Jenis Kelamin', 'required');
+    $this->form_validation->set_rules('alamat', 'Alamat', 'required|trim');
+    $this->form_validation->set_rules('no_telp', 'Nomor Telepon', 'required|numeric|trim');
+
+    if ($this->form_validation->run() == FALSE) {
+        $this->session->set_flashdata('error', validation_errors());
+        redirect('anggota/tambah_anggota');
+    } else {
         $data = array(
-            'id_anggota'        => $this->input->post('id_anggota'),
-            'kode_anggota'      => $this->input->post('kode_anggota'),
-            'nis'               => $this->input->post('nis'),
-            'nama_anggota'      => $this->input->post('nama_anggota'),
-            'email'             => $this->input->post('email'),
-            'jenis_kelamin'     => $this->input->post('jenis_kelamin'),
-            'alamat'            => $this->input->post('alamat'),
-            'no_telp'           => $this->input->post('no_telp')
+            'kode_anggota'  => $this->input->post('kode_anggota', TRUE),
+            'nis'           => $this->input->post('nis', TRUE),
+            'nama_anggota'  => $this->input->post('nama_anggota', TRUE),
+            'email'         => $this->input->post('email', TRUE),
+            'jenis_kelamin' => $this->input->post('jenis_kelamin', TRUE),
+            'alamat'        => $this->input->post('alamat', TRUE),
+            'no_telp'       => $this->input->post('no_telp', TRUE)
         );
-        $query = $this->db->insert('anggota', $data);
-        if ($query = true) {
-            $this->session->set_flashdata('info', 'Data Berhasil di Simpan');
-            redirect('anggota');
+		$query = $this->db->insert('anggota',$data);
+        if ($query) {
+            $this->session->set_flashdata('info', 'Data berhasil disimpan!');
+        } else {
+            $this->session->set_flashdata('info', 'Terjadi kesalahan saat menyimpan data.');
         }
-
+        redirect('anggota');
     }
-
+}
     public function edit($id)
     {
         $isi['content'] = 'anggota/edit_anggota';
@@ -54,34 +68,55 @@ class Anggota Extends CI_Controller{
 
     public function update()
     {
+		$this->load->library('form_validation');
+
+		 $this->form_validation->set_rules('kode_anggota', 'Kode Anggota', 'required|trim');
+         $this->form_validation->set_rules('nis', 'NIS', 'required|trim');
+         $this->form_validation->set_rules('nama_anggota', 'Nama Anggota', 'required|trim');
+         $this->form_validation->set_rules('email', 'Email', 'required|valid_email|trim');
+         $this->form_validation->set_rules('jenis_kelamin', 'Jenis Kelamin', 'required');
+         $this->form_validation->set_rules('alamat', 'Alamat', 'required|trim');
+         $this->form_validation->set_rules('no_telp', 'No. Telepon', 'required|numeric|trim');
+
         $id_anggota = $this->input->post('id_anggota');
+
+        if ($this->form_validation->run() == FALSE) {
+			$this->session->set_flashdata('error',validation_errors());
+			redirect('anggota/edit/'.$id_anggota);
+		} else {
         $data = array(
-                'id_anggota'        => $this->input->post('id_anggota'),
-                'kode_anggota'        => $this->input->post('kode_anggota'),
-                'nis'               => $this->input->post('nis'),
-                'nama_anggota'      => $this->input->post('nama_anggota'),
-                'email'             => $this->input->post('email'),
-                'jenis_kelamin'     => $this->input->post('jenis_kelamin'),
-                'alamat'            => $this->input->post('alamat'),
-                'no_telp'           => $this->input->post('no_telp')
+                'kode_anggota'      => $this->input->post('kode_anggota',TRUE),
+                'nis'               => $this->input->post('nis',TRUE),
+                'nama_anggota'      => $this->input->post('nama_anggota',TRUE),
+                'email'             => $this->input->post('email',TRUE),
+                'jenis_kelamin'     => $this->input->post('jenis_kelamin',TRUE),
+                'alamat'            => $this->input->post('alamat',TRUE),
+                'no_telp'           => $this->input->post('no_telp',TRUE)
             );
             $query = $this->m_anggota->update($id_anggota, $data);
-            if ($query = true) {
+            if ($query) {
+				 if ($this->db->affected_rows() > 0) {
                 $this->session->set_flashdata('info', 'Data Berhasil di Update');
-                redirect('anggota');
-            }
-    }
-
+            } else {
+				$this->session->set_flashdata('info', 'Data Belum  Berhasil di Update');
+			}
+			redirect('anggota');
+		}
+	}  
+}
+	
     public function hapus($id)
     {
         $query = $this->m_anggota->hapus($id);
-        if ($query = true) {
+        if ($query) {
                 $this->session->set_flashdata('info', 'Data Berhasil di Hapus');
-                redirect('anggota');
-            }
+            } else {
+				$this->session->set_flashdata('info','Data Gagal di Hapus');
+			}
+			redirect('anggota');
     }
 
 }
 
-
 ?>
+

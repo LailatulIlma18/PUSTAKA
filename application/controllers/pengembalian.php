@@ -23,35 +23,11 @@ class Pengembalian extends CI_Controller {
         $tgl_sekarang  = new DateTime(date('Y-m-d'));
         $selisih       = max(0, $tgl_sekarang->diff($tgl_kembali)->days);
 
-        if ($pinjam->kondisi_buku == 'hilang') {
-            $status_buku = 'Hilang';
-            $denda = 60000;
-        } elseif ($pinjam->kondisi_buku == 'rusak') {
-            $status_buku = 'Rusak';
-            $denda = 30000;
-        } elseif ($tgl_sekarang > $tgl_kembali) {
-            $status_buku = 'Terlambat';
-            $denda = $selisih * 1000; 
-        } else {
-            $status_buku = 'Tepat Waktu';
-            $denda = 0;
-        }
-
-       $data_pengembalian = [
-        'id_peminjaman'  => $pinjam->id_peminjaman,
-        'id_anggota'     => $pinjam->id_anggota,
-        'id_buku'        => $pinjam->id_buku,
-        'kode_peminjaman'  => $pinjam->kode_peminjaman,
-        'tgl_pinjam'     => $pinjam->tgl_pinjam,
-        'tgl_kembali'    => $this->tgl_kembali,
-        'tgl_kembalikan' => date('Y-m-d'), 
-        'status_denda'   => $status_buku,
-        'tipe_rusak'     => $pinjam->tipe_rusak,
-        'denda'          => $denda
-   ];
         $this->M_Pengembalian->simpan($data_pengembalian);
         $this->M_Peminjaman->updateStatus($id_pinjam, 'dikembalikan');
         redirect('pengembalian');
     }
 
 }
+
+?>

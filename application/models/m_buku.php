@@ -25,8 +25,6 @@ class M_buku extends CI_Model{
         $this->db->select('*');
         $this->db->from('buku');
         $this->db->join('kategori', 'buku.id_kategori = kategori.id_kategori');
-        // $query = $this->db->get();
-        // return $query->result();
         return $this->db->get();
     }
 
@@ -42,15 +40,14 @@ class M_buku extends CI_Model{
     public function update($id_buku, $data)
     {
         $this->db->where('id_buku', $id_buku);
-        $this->db->update('buku', $data);
+        return $this->db->update('buku', $data);
     }
 
      public function hapus($id)
     {
         $this->db->where('id_buku', $id);
-        $this->db->delete('buku');
+        return $this->db->delete('buku');
     }
 }
-
 
 ?>

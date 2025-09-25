@@ -14,7 +14,6 @@
       </div>
     </div>
 
-
     <!-- sidebar menu: : style can be found in sidebar.less -->
     <ul class="sidebar-menu" data-widget="tree">
       <li class="header">MAIN NAVIGATION</li>
@@ -41,31 +40,28 @@
           <li><a href="<?= base_url()?>peminjaman"><i class="fa fa-upload"></i> Peminjaman</a></li>
           <li><a href="<?= base_url()?>pengembalian"><i class="fa fa-download"></i> Pengembalian </a></li>
         </ul>
-      </li>
+      </li> 
 
-      <li class="treeview">
+			  <li class="treeview">
         <a href="#">
-          <i class="fa  fa-pie-chart"></i>
+          <i class="fa fa-pie-chart"></i>
           <span>Report</span>
           <span class="pull-right-container">
-            <span class="label label-primary pull-right">1</span>
+            <span class="label label-primary pull-right">2</span>
           </span>
         </a>
         <ul class="treeview-menu">
-          <li><a href="<?= base_url()?>laporan/peminjaman"><i class="fa  fa-file-text"></i>Laporan Peminjaman</a></li>
-					<li><a href="<?= base_url()?>laporan/pengembalian"><i class="fa  fa-file-text"></i>Laporan Pengembalian</a></li>
-        </ul>
+          <li><a href="<?= base_url()?>laporan/peminjaman"><i class="fa fa-file-text"></i>Laporan Peminjaman</a></li>
+          <li><a href="<?= base_url()?>laporan/pengembalian"><i class="fa fa-file-text"></i>Laporan Pengembalian </a></li>
         </ul>
       </li>
 
-      <li><a href="login/logout"><i class="fa fa-sign-out"></i> Logout</a></li>
-
-    </ul>
-  </section>
-  <!-- /.sidebar -->
+	<li><a href="login/logout"><i class="fa fa-sign-out"></i>Logout</a></li>
+	
+		</section>
 </aside>
 
-    <?php }else{?>
+   <?php } else { ?>
 
       <aside class="main-sidebar">
   <!-- sidebar: style can be found in sidebar.less -->
@@ -80,7 +76,6 @@
         <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
       </div>
     </div>
-
 
     <!-- sidebar menu: : style can be found in sidebar.less -->
     <ul class="sidebar-menu" data-widget="tree">
@@ -109,27 +104,26 @@
         </ul>
       </li>
 
-      <!-- <li class="treeview">
+ <li class="treeview">
         <a href="#">
-          <i class="fa  fa-pie-chart"></i>
+          <i class="fa fa-pie-chart"></i>
           <span>Report</span>
           <span class="pull-right-container">
             <span class="label label-primary pull-right">2</span>
           </span>
         </a>
         <ul class="treeview-menu">
-          <li><a href="<?= base_url()?>laporan/peminjaman"><i class="fa  fa-file-text"></i>Laporan Peminjaman</a></li>
+          <li><a href="<?= base_url()?>laporan/peminjaman"><i class="fa fa-file-text"></i>Laporan Peminjaman</a></li>
+          <li><a href="<?= base_url()?>laporan/pengembalian"><i class="fa fa-file-text"></i>Laporan Pengembalian </a></li>
         </ul>
-      </li> -->
+      </li>
 
-      <li><a href="login/logout"><i class="fa fa-sign-out"></i> Logout</a></li>
+    <li><a href="login/logout"><i class="fa fa-sign-out"></i>Logout</a></li>
 
     </ul>
-  </section>
-  <!-- /.sidebar -->
+		</section>
 </aside>
    <?php }
-  
   ?>
 
   

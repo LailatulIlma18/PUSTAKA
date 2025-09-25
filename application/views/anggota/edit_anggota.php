@@ -3,6 +3,18 @@
         <div class="box-header with-border">
             <h3 class="box-title"><?= $judul;?></h3>
         </div>
+		
+		 <?php if ($this->session->flashdata('error')): ?>
+            <div class="alert alert-danger">
+                <?= $this->session->flashdata('error'); ?>
+            </div>
+        <?php endif; ?>
+
+		  <?php if ($this->session->flashdata('success')): ?>
+            <div class="alert alert-success">
+                <?= $this->session->flashdata('success'); ?>
+            </div>
+        <?php endif; ?>
 
         <form method="post" action="<?= base_url()?>anggota/update" class="form-horizontal">
             <div class="box-body">
@@ -33,7 +45,7 @@
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
                     <div class="col-sm-10">
-                        <input type="text" name="email" value="<?= $data['email'];?>" class="form-control" placeholder="Masukkan Email Anda" required>
+                        <input type="email" name="email" value="<?= $data['email'];?>" class="form-control" placeholder="Masukkan Email Anda" required>
                     </div>
                 </div>
 
@@ -70,10 +82,9 @@
             </div>
 
                 <div class="box-footer">
-                    <a href="<?= base_url()?>anggota" class="btn btn-Primary">Cancel</a>
-                    <button type="submit" class="btn btn-warning">Update</button>
+                    <a href="<?= base_url()?>anggota" class="btn btn-warning">Cancel</a>
+                    <button type="submit" class="btn btn-primary">Update</button>
                 </div>
-            
         </form>
      </div>
 

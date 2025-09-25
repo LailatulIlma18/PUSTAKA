@@ -64,15 +64,14 @@
                 </div> 
 
                 <div class="box-footer">
-                    <a href="<?= base_url()?>peminjaman" class="btn btn-primary">Cancel</a>
-                    <button type="submit" class="btn btn-warning">Simpan</button>
+                    <a href="<?= base_url()?>peminjaman" class="btn btn-warning">Cancel</a>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
                 </div>
         </form>
      </div>
  </div>
 
  <script>
-
        $('#id_buku').change(function(){
             var id = $(this).val();
              $.ajax({
