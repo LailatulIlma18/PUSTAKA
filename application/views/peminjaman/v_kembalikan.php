@@ -2,8 +2,6 @@
 $tarif_hilang        = $konfigurasi['denda_hilang'] ?? 0;
 $tarif_rusak_ringan  = $konfigurasi['denda_rusak_ringan'] ?? 0;
 $tarif_rusak_berat   = $konfigurasi['denda_rusak_berat'] ?? 0;
-
-// Hitung keterlambatan & denda otomatis
 $tgl_kembali   = new DateTime($peminjaman['tgl_kembali']);
 $tgl_sekarang  = new DateTime(date('Y-m-d'));
 $selisih       = $tgl_kembali->diff($tgl_sekarang)->days;

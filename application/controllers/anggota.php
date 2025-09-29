@@ -29,7 +29,7 @@ public function simpan()
     $this->load->library('form_validation');
 
      $this->form_validation->set_rules('kode_anggota', 'Kode Anggota', 'required');
-    $this->form_validation->set_rules('nis', 'NIS', 'required');
+    $this->form_validation->set_rules('nis', 'NIS', 'required|numeric');
     $this->form_validation->set_rules('nama_anggota', 'Nama Anggota', 'required');
     $this->form_validation->set_rules('email', 'Email', 'required|valid_email');
     $this->form_validation->set_rules('jenis_kelamin', 'Jenis Kelamin', 'required');
@@ -71,7 +71,7 @@ public function simpan()
 		$this->load->library('form_validation');
 
 		 $this->form_validation->set_rules('kode_anggota', 'Kode Anggota', 'required');
-         $this->form_validation->set_rules('nis', 'NIS', 'required|trim');
+         $this->form_validation->set_rules('nis', 'NIS', 'required|numeric');
          $this->form_validation->set_rules('nama_anggota', 'Nama Anggota', 'required');
          $this->form_validation->set_rules('email', 'Email', 'required|valid_email');
          $this->form_validation->set_rules('jenis_kelamin', 'Jenis Kelamin', 'required');

@@ -1,9 +1,8 @@
   <?php
     if($this->session->userdata('level') == 'admin') {?>
-         <aside class="main-sidebar">
-  <!-- sidebar: style can be found in sidebar.less -->
+
+ <aside class="main-sidebar">
   <section class="sidebar">
-    <!-- Sidebar user panel -->
     <div class="user-panel">
       <div class="pull-left image">
         <img src="<?= base_url('asset/dist/img/perempuan/'.$this->session->userdata('foto'));?>"       
@@ -16,7 +15,6 @@
       </div>
     </div>
 
-    <!-- sidebar menu: : style can be found in sidebar.less -->
     <ul class="sidebar-menu" data-widget="tree">
       <li class="header">MAIN NAVIGATION</li>
       <li class="active">
@@ -57,18 +55,15 @@
           <li><a href="<?= base_url()?>laporan/pengembalian"><i class="fa fa-file-text"></i>Laporan Pengembalian </a></li>
         </ul>
       </li>
-
-	<li><a href="login/logout"><i class="fa fa-sign-out"></i>Logout</a></li>
-	
+	<li><a href="<?= base_url('login/logout') ?>"><i class="fa fa-sign-out"></i>Logout</a></li>
+	</ul>
 		</section>
 </aside>
 
    <?php } else { ?>
 
       <aside class="main-sidebar">
-  <!-- sidebar: style can be found in sidebar.less -->
   <section class="sidebar">
-    <!-- Sidebar user panel -->
     <div class="user-panel">
       <div class="pull-left image">
         <img src="<?= base_url('asset/dist/img/perempuan/'.$this->session->userdata('foto'));?>"       
@@ -80,7 +75,6 @@
       </div>
     </div>
 
-    <!-- sidebar menu: : style can be found in sidebar.less -->
     <ul class="sidebar-menu" data-widget="tree">
       <li class="header">MAIN NAVIGATION</li>
       <li class="active">
@@ -107,7 +101,7 @@
         </ul>
       </li>
 
- <!-- <li class="treeview">
+       <li class="treeview">
         <a href="#">
           <i class="fa fa-pie-chart"></i>
           <span>Report</span>
@@ -119,10 +113,8 @@
           <li><a href="<?= base_url()?>laporan/peminjaman"><i class="fa fa-file-text"></i>Laporan Peminjaman</a></li>
           <li><a href="<?= base_url()?>laporan/pengembalian"><i class="fa fa-file-text"></i>Laporan Pengembalian </a></li>
         </ul>
-      </li> -->
-
-    <li><a href="login/logout"><i class="fa fa-sign-out"></i>Logout</a></li>
-
+      </li>
+   <li><a href="<?= base_url('login/logout') ?>"><i class="fa fa-sign-out"></i>Logout</a></li>
     </ul>
 		</section>
 </aside>

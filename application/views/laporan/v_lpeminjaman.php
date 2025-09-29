@@ -8,7 +8,6 @@
         .tgl_akhir { margin-left: -20px; }
         .btn-filter { margin-left: -40px; }
         .btn-refresh { margin-left: -60px; }
-        /* .btn-pdf { margin-left: -80px; } */
         .btn-excel { margin-left: -80px; }
         .badge {
             padding: 4px 10px;

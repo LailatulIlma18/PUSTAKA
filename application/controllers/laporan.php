@@ -61,9 +61,6 @@ public function pengembalian()
     $this->load->view('v_dashboard', $isi);
 }
 
-// Export Excel Peminjaman
-   
-
     public function export_peminjaman()
     {
         $tgl_awal  = $this->session->userdata('tanggal_awal');
@@ -101,10 +98,6 @@ public function pengembalian()
         exit;
     }
 
-    
-    // Export Excel Pengembalian
-    
-    
     public function export_pengembalian()
     {
         $tgl_awal  = $this->session->userdata('tanggal_awal');
@@ -154,7 +147,7 @@ public function pengembalian()
         exit;
     }
 }
-
+?>
 
 
 

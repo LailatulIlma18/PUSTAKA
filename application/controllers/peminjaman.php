@@ -14,8 +14,6 @@ class Peminjaman extends CI_Controller {
     {
         $isi['content'] = 'peminjaman/v_peminjaman';
         $isi['judul']   = "Data Peminjaman Buku";
-
-        // ambil data, urutkan berdasarkan tanggal pinjam terbaru
         $this->db->order_by('tgl_pinjam', 'DESC');  
         $isi['data'] = $this->M_Peminjaman->getDataPeminjaman();
 

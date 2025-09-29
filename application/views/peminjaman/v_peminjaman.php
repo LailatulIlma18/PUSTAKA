@@ -1,5 +1,4 @@
 <?php 
-// Notifikasi flashdata
 if (!empty($this->session->flashdata('info'))) { ?>
     <div class="alert alert-success" role="alert">
         <?= $this->session->flashdata('info'); ?>
@@ -13,6 +12,8 @@ if (!empty($this->session->flashdata('info'))) { ?>
         </a>
     </div>
 </div>
+
+<br>
 
 <div class="box">
     <div class="box-header">
@@ -62,21 +63,17 @@ if (!empty($this->session->flashdata('info'))) { ?>
                         ?>
                     </td>
                     <td>
-                        <!-- Tombol Modal -->
                         <button type="button" class="btn btn-primary btn-xs" 
                                 data-toggle="modal" 
                                 data-target="#modalKembalikan<?= $row->id_peminjaman; ?>">
                             Kembalikan
                         </button>
 
-<!-- Modal Konfirmasi -->
 <div class="modal fade" id="modalKembalikan<?= $row->id_peminjaman; ?>" tabindex="-1" role="dialog">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content custom-modal">
 
-      <!-- Body -->
       <div class="modal-body text-center p-4">
-        <!-- Icon Bulat -->
         <div class="icon-circle mb-3">
           <i class="fa fa-book"></i>
         </div>
@@ -85,7 +82,6 @@ if (!empty($this->session->flashdata('info'))) { ?>
           Yakin buku <strong>"<?= $row->judul; ?>"</strong> mau dikembalikan?
         </p>
 
-        <!-- Tombol -->
         <div class="d-flex justify-content-center gap-2">
           <button type="button" class="btn btn-light btn-sm px-3" data-dismiss="modal">
             <i class="fa fa-times"></i> Batal
@@ -100,7 +96,6 @@ if (!empty($this->session->flashdata('info'))) { ?>
   </div>
 </div>
 
-<!-- Custom CSS -->
 <style>
 .custom-modal {
   border-radius: 20px;
@@ -128,23 +123,20 @@ if (!empty($this->session->flashdata('info'))) { ?>
   to   { transform: scale(1); opacity: 1; }
 }
 </style>
-
-
-
-                    </td>     
-                </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
+ </td>     
+  </tr>
+  <?php endforeach; ?>
+  </tbody>
+  </table>
     </div>
 </div>
 
 <script>
 $(document).ready(function() {
     $('#example1').DataTable({
-        "order": [[3, "desc"]], // urut desc berdasarkan kolom Tanggal Pinjam
+        "order": [[3, "desc"]], 
         "columnDefs": [
-            { "orderable": false, "targets": [0, 7] } // kolom No Transaksi & Aksi tidak bisa sort
+            { "orderable": false, "targets": [0, 7] } 
         ]
     });
 });

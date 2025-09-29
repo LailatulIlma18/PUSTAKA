@@ -9,8 +9,6 @@
         .btn-filter { margin-left: -40px; }
         .btn-refresh { margin-left: -60px; }
         .btn-excel { margin-left: -80px; }
-
-        /* Warna status */
         .status-tepat { color: green; font-weight: bold; }
         .status-terlambat { color: red; font-weight: bold; }
         .status-rusak { color: brown; font-weight: bold; }
@@ -75,7 +73,6 @@
                     <td><?= date('d F Y', strtotime($row->tgl_pinjam)); ?></td>
                     <td><?= date('d F Y', strtotime($row->tgl_kembali)); ?></td>
 
-                    <!-- Status + Jumlah Hari -->
                     <?php 
                         $status = "Tepat Waktu";
                         $class  = "status-tepat";
@@ -102,7 +99,6 @@
                         <?= $jumlah_hari ?>
                     </td>
 
-                    <!-- Tipe Rusak -->
                     <td>
                         <?php if ($row->status_denda == 'Rusak') { ?>
                             <span class="status-rusak">
@@ -113,7 +109,6 @@
                         <?php } ?>
                     </td>
 
-                    <!-- Denda -->
                     <td>
                         <?= ($row->denda > 0) ? 'Rp' . number_format($row->denda, 0, ',', '.') : '-'; ?>
                     </td>

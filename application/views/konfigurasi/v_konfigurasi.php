@@ -1,9 +1,7 @@
 <?php 
     if (!empty($this->session->flashdata('info'))) {?>
     <div class="alert alert-success" role="alert"><?= $this->session->flashdata('info'); ?></div>
-
    <?php }
-
 ?>
 
 <div class="row">

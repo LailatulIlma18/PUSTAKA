@@ -1,6 +1,5 @@
 <?php 
     $tgl_pinjam =  date('Y-m-d');
-
     $tiga_hari = mktime(0, 0, 0, date("n"), date("j") + 3, date("Y"));
     $tgl_kembali = date("Y-m-d", $tiga_hari);
 ?>
