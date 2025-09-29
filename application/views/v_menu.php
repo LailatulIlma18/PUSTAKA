@@ -6,10 +6,12 @@
     <!-- Sidebar user panel -->
     <div class="user-panel">
       <div class="pull-left image">
-        <img src="<?= base_url() ?>asset/dist/img/perempuan/XI PPLG 2/ILMA.JPG" class="img-circle" alt="User Image">
+        <img src="<?= base_url('asset/dist/img/perempuan/'.$this->session->userdata('foto'));?>"       
+         style="width:50px; height:50px; border-radius:50%; object-fit:cover;" 
+          alt="User Image">
       </div>
       <div class="pull-left info">
-        <p>Avicena</p>
+        <p><?= $this->session->userdata('nama');?></p>
         <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
       </div>
     </div>
@@ -69,10 +71,11 @@
     <!-- Sidebar user panel -->
     <div class="user-panel">
       <div class="pull-left image">
-        <img src="<?= base_url() ?>asset/dist/img/perempuan/XI PPLG 2/ILMA.JPG" class="img-circle" alt="User Image">
-      </div>
+        <img src="<?= base_url('asset/dist/img/perempuan/'.$this->session->userdata('foto'));?>"       
+         style="width:50px; height:50px; border-radius:50%; object-fit:cover;" 
+          alt="User Image">      </div>
       <div class="pull-left info">
-        <p>Avicena</p>
+        <p><?= $this->session->userdata('nama');?></p>
         <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
       </div>
     </div>
@@ -104,7 +107,7 @@
         </ul>
       </li>
 
- <li class="treeview">
+ <!-- <li class="treeview">
         <a href="#">
           <i class="fa fa-pie-chart"></i>
           <span>Report</span>
@@ -116,7 +119,7 @@
           <li><a href="<?= base_url()?>laporan/peminjaman"><i class="fa fa-file-text"></i>Laporan Peminjaman</a></li>
           <li><a href="<?= base_url()?>laporan/pengembalian"><i class="fa fa-file-text"></i>Laporan Pengembalian </a></li>
         </ul>
-      </li>
+      </li> -->
 
     <li><a href="login/logout"><i class="fa fa-sign-out"></i>Logout</a></li>
 
