@@ -9,6 +9,9 @@ class Buku extends CI_Controller{
 
     public function index ()
     {
+        // Ambil data buku, urut dari yang terakhir ditambahkan
+   
+        $data['buku'] = $this->db->order_by('id_buku', 'DESC')->get('buku')->result();
         $isi['content']= 'buku/v_buku';
         $isi['judul'] = 'Daftar Data Buku';
         $isi['data'] = $this->m_buku->get_data_buku();

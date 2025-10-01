@@ -56,3 +56,15 @@
         </table>
     </div>
 </div>
+
+<script>
+$(document).ready(function() {
+    $('#example1').DataTable({
+        "order": [[0, "desc"]], // kolom pertama (Kode Buku) descending
+        "columnDefs": [
+            { "orderable": false, "targets": 8 } // kolom aksi tidak bisa diurut
+        ]
+    });
+});
+</script>
+
