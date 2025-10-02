@@ -4,17 +4,14 @@
             <h3 class="box-title"><?= $judul; ?></h3>
         </div>
 
-        <!-- Pesan Error -->
         <?php if($this->session->flashdata('error')): ?>
             <div class="alert alert-danger"><?= $this->session->flashdata('error'); ?></div>
         <?php endif; ?>
 
-        <!-- Pesan Sukses -->
         <?php if($this->session->flashdata('info')): ?>
             <div class="alert alert-success"><?= $this->session->flashdata('info'); ?></div>
         <?php endif; ?>
 
-        <!-- Form Tambah Buku -->
         <form method="post" action="<?= base_url('buku/simpan') ?>" class="form-horizontal">
             <div class="box-body">
                 <input type="hidden" name="id_buku" class="form-control" readonly>
@@ -29,7 +26,7 @@
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Judul Buku</label>
                     <div class="col-sm-10">
-                        <input type="text" name="judul" class="form-control" placeholder="Masukkan Judul Buku" required>
+                        <input type="text" name="judul" class="form-control" placeholder="Masukkan Judul Buku">
                     </div>
                 </div> 
 
@@ -50,14 +47,14 @@
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Penulis</label>
                     <div class="col-sm-10">
-                        <input type="text" name="penulis" class="form-control" required>
+                        <input type="text" name="penulis" class="form-control"  placeholder="Masukkan Penulis Buku">
                     </div>
                 </div> 
 
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Penerbit</label>
                     <div class="col-sm-10">
-                        <input type="text" name="penerbit" class="form-control" required>
+                        <input type="text" name="penerbit" class="form-control"  placeholder="Masukkan Penerbit Buku">
                     </div>
                 </div> 
 
@@ -76,14 +73,14 @@
                 <div class="form-group">
                     <label class="col-sm-2 control-label">ISBN</label>
                     <div class="col-sm-10">
-                        <input type="text" name="isbn" class="form-control" required>
+                        <input type="text" name="isbn" class="form-control"  placeholder="Masukkan ISBN">
                     </div>
                 </div> 
 
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Jumlah</label>
                     <div class="col-sm-10">
-                        <input type="number" name="jumlah" class="form-control" required>
+                        <input type="number" name="jumlah" class="form-control"  placeholder="Masukkan Jumlah Buku">
                     </div>
                 </div> 
 
@@ -118,24 +115,17 @@
   </div>
 </div>
 
-<!-- CSS Tambahan -->
 <style>
 .select2-container { width: 100% !important; }
 .mt-2 { margin-top: 10px; }
 </style>
 
-<!-- Script AJAX & Inisialisasi Select2 -->
 <script>
 $(document).ready(function() {
-    // Inisialisasi Select2
     $('#kategoriSelect, select[name="tahun_terbit"]').select2({ width: '100%' });
-
-    // Inisialisasi ulang jika modal muncul
     $('#modalKategori').on('shown.bs.modal', function() {
         $('#kategoriSelect').select2({ width: '100%' });
     });
-
-    // AJAX tambah kategori
     $('#formKategori').submit(function(e){
         e.preventDefault();
         $.ajax({

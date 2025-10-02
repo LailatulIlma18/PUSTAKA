@@ -9,8 +9,6 @@ class Buku extends CI_Controller{
 
     public function index ()
     {
-        // Ambil data buku, urut dari yang terakhir ditambahkan
-   
         $data['buku'] = $this->db->order_by('id_buku', 'DESC')->get('buku')->result();
         $isi['content']= 'buku/v_buku';
         $isi['judul'] = 'Daftar Data Buku';
@@ -37,7 +35,7 @@ class Buku extends CI_Controller{
         $this->form_validation->set_rules('penulis', 'Penulis', 'required');
         $this->form_validation->set_rules('penerbit', 'Penerbit', 'required');
         $this->form_validation->set_rules('tahun_terbit', 'Tahun Terbit', 'required|numeric');
-        $this->form_validation->set_rules('isbn', 'ISBN', 'required|numeric');
+        $this->form_validation->set_rules('isbn', 'ISBN', 'required|numeric|exact_length[13]');
         $this->form_validation->set_rules('jumlah', 'Jumlah', 'required|integer|greater_than_equal_to[0]');
 
 
@@ -84,7 +82,7 @@ class Buku extends CI_Controller{
         $this->form_validation->set_rules('penulis', 'Penulis', 'required');
         $this->form_validation->set_rules('penerbit', 'Penerbit', 'required');
         $this->form_validation->set_rules('tahun_terbit', 'Tahun Terbit', 'required|numeric');
-        $this->form_validation->set_rules('isbn', 'ISBN', 'required|numeric');
+        $this->form_validation->set_rules('isbn', 'ISBN','required|numeric|exact_length[13]');
         $this->form_validation->set_rules('jumlah', 'Jumlah', 'required|numeric');
 
         $id_buku = $this->input->post('id_buku',TRUE);

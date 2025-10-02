@@ -12,7 +12,7 @@ class Anggota extends CI_Controller{
     {
         $isi['content'] = 'anggota/v_anggota';
         $isi['judul'] = 'Daftar Data Anggota';
-        $isi['data'] = $this->db->get('anggota')->result();
+        $isi['data'] = $this->m_anggota->get_all();
         $this->load->view('v_dashboard', $isi);
     }
 
@@ -29,12 +29,12 @@ public function simpan()
     $this->load->library('form_validation');
 
      $this->form_validation->set_rules('kode_anggota', 'Kode Anggota', 'required');
-    $this->form_validation->set_rules('nis', 'NIS', 'required|numeric');
+    $this->form_validation->set_rules('nis', 'NIS', 'required|numeric|exact_length[10]');
     $this->form_validation->set_rules('nama_anggota', 'Nama Anggota', 'required');
     $this->form_validation->set_rules('email', 'Email', 'required|valid_email');
     $this->form_validation->set_rules('jenis_kelamin', 'Jenis Kelamin', 'required');
     $this->form_validation->set_rules('alamat', 'Alamat', 'required');
-    $this->form_validation->set_rules('no_telp', 'Nomor Telepon', 'required|numeric');
+    $this->form_validation->set_rules('no_telp', 'Nomor Telepon', 'required|numeric|exact_length[12]');
 
     if ($this->form_validation->run() == FALSE) {
         $this->session->set_flashdata('error', validation_errors());
@@ -71,12 +71,12 @@ public function simpan()
 		$this->load->library('form_validation');
 
 		 $this->form_validation->set_rules('kode_anggota', 'Kode Anggota', 'required');
-         $this->form_validation->set_rules('nis', 'NIS', 'required|numeric');
+         $this->form_validation->set_rules('nis', 'NIS','required|numeric|exact_length[10]');
          $this->form_validation->set_rules('nama_anggota', 'Nama Anggota', 'required');
          $this->form_validation->set_rules('email', 'Email', 'required|valid_email');
          $this->form_validation->set_rules('jenis_kelamin', 'Jenis Kelamin', 'required');
          $this->form_validation->set_rules('alamat', 'Alamat', 'required');
-         $this->form_validation->set_rules('no_telp', 'No. Telepon', 'required|numeric');
+         $this->form_validation->set_rules('no_telp', 'No. Telepon', 'required|numeric|exact_length[12]');
 
         $id_anggota = $this->input->post('id_anggota');
 

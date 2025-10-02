@@ -31,7 +31,8 @@
                 <div class="form-group">
                     <label for="inputemail3" class="col-sm-2 control-label">NIS</label>
                     <div class="col-sm-10">
-                        <input type="text"  name="nis" value="<?= $data['nis'];?>" class="form-control" placeholder="Masukkan NIS" required>
+                        <input type="text"  name="nis" value="<?= $data['nis'];?>" class="form-control" placeholder="Masukkan NIS"  maxlength="10"
+                        oninput="this.value = this.value.replace(/\D/g,'').slice(0,10);"> 
                     </div>
                  </div>
 
@@ -69,14 +70,15 @@
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">Alamat</label>
                     <div class="col-sm-10">
-                        <textarea name="alamat" class="form-control" cols="30" rows="5" required><?= $data['alamat'];?></textarea>
+                        <textarea name="alamat" class="form-control" placeholder="Masukkan Alamat Anda" cols="30" rows="5" required><?= $data['alamat'];?></textarea>
                     </div>
                 </div>
                     
             <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">Nomor Telepon</label>
                     <div class="col-sm-10">
-                        <input type="text" name="no_telp" value="<?= $data['no_telp'];?>" class="form-control" placeholder="Masukkan Nomor Telepon Anda" required>
+                        <input type="text" name="no_telp" value="<?= $data['no_telp'];?>" class="form-control" placeholder="Masukkan Nomor Telepon Anda"  maxlength="12"
+                          oninput="this.value = this.value.replace(/\D/g,'').slice(0,12);"> 
                     </div>
                 </div>
             </div>

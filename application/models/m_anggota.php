@@ -2,6 +2,12 @@
 
 class M_anggota extends CI_Model{
 
+	public function get_all()
+    {
+        $this->db->order_by('id_anggota', 'DESC');
+        return $this->db->get('anggota')->result();
+    }
+
     public function kode_anggota()
     {
         $this->db->select('RIGHT(anggota.kode_anggota,3) as kode', FALSE);

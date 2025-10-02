@@ -45,3 +45,10 @@
         </table>
     </div>
 </div>
+<script>
+  $(document).ready(function () {
+    $('#example1').DataTable({
+      "order": [[0, "desc"]] 
+    });
+  });
+</script>

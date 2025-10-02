@@ -12,11 +12,10 @@ class Kategori extends CI_Controller{
     public function index()
 {
     $isi['judul']   = 'Kategori Buku';
-    $isi['data']    = $this->db->get('kategori')->result();
-    $isi['content'] = 'kategori/v_kategori'; // <-- inilah yang kurang
+    $isi['data']    = $this->m_kategori->get_all();
+    $isi['content'] = 'kategori/v_kategori';
     $this->load->view('v_dashboard', $isi);
 }
-
 
     public function tambah_kategori()
     {
@@ -25,7 +24,6 @@ class Kategori extends CI_Controller{
         $this->load->view('v_dashboard', $isi);
     }
 
-    // simpan biasa (pakai redirect)
     public function simpan()
     {
         $this->form_validation->set_rules('nama_kategori', 'Nama Kategori', 'required');
@@ -45,7 +43,6 @@ class Kategori extends CI_Controller{
         }
     }
 
-    // simpan via AJAX (dipakai di modal di form Buku)
     public function simpan_ajax()
     {
         $nama = $this->input->post('nama_kategori', TRUE);

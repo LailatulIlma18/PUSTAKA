@@ -90,7 +90,8 @@
                  <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">ISBN</label>
                     <div class="col-sm-10">
-                        <input type="text" name="isbn"  value="<?= $data['isbn'];?>" class="form-control" >
+                        <input type="text" name="isbn"  value="<?= $data['isbn'];?>" class="form-control" maxlength="13"
+                          oninput="this.value = this.value.replace(/\D/g,'').slice(0,13);">
                     </div>
                 </div> 
 

@@ -2,6 +2,12 @@
 
 class M_kategori extends CI_Model {
 
+	public function get_all()
+    {
+        $this->db->order_by('id_kategori', 'DESC');
+        return $this->db->get('kategori')->result();
+    }
+
     public function edit($id)
     {
         $this->db->where('id_kategori', $id);
