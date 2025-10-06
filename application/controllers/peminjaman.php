@@ -16,10 +16,8 @@ class Peminjaman extends CI_Controller {
         $isi['judul']   = "Data Peminjaman Buku";
         $this->db->order_by('tgl_pinjam', 'DESC');  
         $isi['data'] = $this->M_Peminjaman->getDataPeminjaman();
-
         $konfigurasi_denda       = $this->M_Peminjaman->getKonfigurasiDenda();
         $isi['denda_per_hari']   = isset($konfigurasi_denda['terlambat']) ? $konfigurasi_denda['terlambat'] : 0;
-
         $this->load->view('v_dashboard', $isi);
     }
 

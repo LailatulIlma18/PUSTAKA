@@ -33,14 +33,14 @@
                  <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">Judul Buku</label>
                     <div class="col-sm-10">
-                        <input type="text" name="judul" value="<?= $data['judul'];?>" class="form-control" required>
+                        <input type="text" name="judul" value="<?= $data['judul'];?>" class="form-control"  placeholder="Masukkan Judul Buku">
                     </div>
                 </div> 
 
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">Kategori</label>
                     <div class="col-sm-10">
-                        <select name="id_kategori" class="form-control select2">
+                        <select name="id_kategori" class="form-control select2"  placeholder="Masukkan Kategori Buku">
                             <?php 
                             foreach ($kategori as $row) {
                                 if ($data['id_kategori'] == $row->id_kategori) {?>
@@ -58,21 +58,21 @@
                  <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">Penulis</label>
                     <div class="col-sm-10">
-                        <input type="text" name="penulis" value="<?= $data['penulis'];?>" class="form-control" >
+                        <input type="text" name="penulis" value="<?= $data['penulis'];?>" class="form-control" placeholder="Masukkan Penulis Buku">
                     </div>
                 </div> 
 
                  <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">Penerbit</label>
                     <div class="col-sm-10">
-                        <input type="text" name="penerbit" value="<?= $data['penerbit'];?>" class="form-control" >
+                        <input type="text" name="penerbit" value="<?= $data['penerbit'];?>" class="form-control" placeholder="Masukkan Penerbit Buku">
                     </div>
                 </div> 
 
                   <div class="form-group">
                     <label for="inputPassword3" class="col-sm-2 control-label">Tahun Terbit</label>
                     <div class="col-sm-10">
-                        <select name="tahun_terbit" class="form-control select2">
+                        <select name="tahun_terbit" class="form-control select2"  placeholder="Masukkan Tahun Terbit">
                             <option value=""> - Pilih Tahun - </option>
                             <?php 
                                 for ($tahun = 1850; $tahun<=2026; $tahun++) {
@@ -90,7 +90,7 @@
                  <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">ISBN</label>
                     <div class="col-sm-10">
-                        <input type="text" name="isbn"  value="<?= $data['isbn'];?>" class="form-control" maxlength="13"
+                        <input type="text" name="isbn"  value="<?= $data['isbn'];?>" class="form-control"  placeholder="Masukkan ISBN" maxlength="13"
                           oninput="this.value = this.value.replace(/\D/g,'').slice(0,13);">
                     </div>
                 </div> 
@@ -98,7 +98,7 @@
                  <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">Jumlah</label>
                     <div class="col-sm-10">
-                        <input type="number" name="jumlah"  value="<?= $data['jumlah'];?>" class="form-control" >
+                        <input type="number" name="jumlah"  value="<?= $data['jumlah'];?>" class="form-control" placeholder="Masukkan Jumlah Buku">
                     </div>
                 </div> 
 

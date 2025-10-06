@@ -55,8 +55,9 @@
           <li><a href="<?= base_url()?>laporan/pengembalian"><i class="fa fa-file-text"></i>Laporan Pengembalian </a></li>
         </ul>
       </li>
-	<li><a href="<?= base_url('login/logout') ?>"><i class="fa fa-sign-out"></i>Logout</a></li>
-	</ul>
+
+				<li><a href="<?= base_url('login/logout')?>"><i class="fa fa-sign-out"></i>Logout</a></li>
+		</ul>
 		</section>
 </aside>
 

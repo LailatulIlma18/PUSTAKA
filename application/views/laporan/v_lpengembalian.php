@@ -15,8 +15,8 @@
 .status-hilang { color: orange; font-weight: bold; }
 </style>
 
-
 <link rel="stylesheet" href="<?= base_url('assets/plugins/datatables/dataTables.bootstrap4.min.css'); ?>">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 
 <body>
@@ -66,6 +66,7 @@
             <th>Jumlah Hari</th>
             <th>Tipe Rusak</th>
             <th>Denda</th>
+            <th>Detail</th> 
         </tr>
     </thead>
     <tbody>
@@ -118,23 +119,57 @@
             <td>
                 <?= ($row->denda > 0) ? 'Rp' . number_format($row->denda, 0, ',', '.') : '-'; ?>
             </td>
+            <td>
+                <button class="btn btn-info btn-sm detailBtn" 
+                        data-toggle="modal" 
+                        data-target="#detailModal"
+                        data-id="<?= $row->id_pengembalian?>">
+                    <i class="fa fa-eye"></i>
+                </button>
+            </td>
         </tr>
         <?php } ?>
     </tbody>
 </table>
 </div>
 </div> 
+<div class="modal fade" id="detailModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Detail Pengembalian</h5>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body" id="detailContent">
+        <div class="text-center"><i class="fa fa-spinner fa-spin"></i> Memuat data...</div>
+      </div>
+    </div>
+  </div>
+</div>
 </body>
 </html>
 
 <script>
 $(document).ready(function() {
-$('#example1').DataTable({
-"order": [[5, "desc"]], 
-"columnDefs": [
-    { "orderable": false, "targets": [6, 7, 8, 9] }
-]
+  $('#example1').DataTable({
+    "order": [[5, "desc"]], 
+    "columnDefs": [
+        { "orderable": false, "targets": [6, 7, 8, 9, 10] }
+    ]
+  });
+  $(".detailBtn").click(function(){
+    var id = $(this).data("id");
+    $("#detailContent").html('<div class="text-center"><i class="fa fa-spinner fa-spin"></i> Memuat data...</div>');
+    $.ajax({
+      url: "<?= base_url('laporan/detail_pengembalian/') ?>"+id, // diarahkan ke controller detail_pengembalian
+      type: "GET",
+      success: function(data){
+        $("#detailContent").html(data);
+      },
+      error: function(){
+        $("#detailContent").html('<div class="alert alert-danger">Gagal memuat data.</div>');
+      }
+    });
+  });
 });
-});
-
 </script>

@@ -152,4 +152,30 @@ foreach ($data as $row) {
 echo "</table>";
 exit;
 }
+
+public function detail_pengembalian($id_pengembalian)
+{
+    $this->db->select('
+        p.*, 
+        a.nama_anggota, 
+        b.judul, 
+        b.penulis, 
+        b.penerbit, 
+        b.tahun_terbit, 
+		b.isbn,
+        k.nama_kategori
+    ');
+    $this->db->from('pengembalian p');
+    $this->db->join('anggota a', 'a.id_anggota = p.id_anggota');
+    $this->db->join('buku b', 'b.id_buku = p.id_buku');
+    $this->db->join('kategori k', 'k.id_kategori = b.id_kategori', 'left'); // ✅ tambahan penting
+    $this->db->where('p.id_pengembalian', $id_pengembalian);
+    $detail = $this->db->get()->row();
+
+    $this->load->view('laporan/v_detail_pengembalian', ['detail' => $detail]);
+}
+
+
+
+
 }

@@ -91,7 +91,7 @@ public function simpan()
                 'email'             => $this->input->post('email',TRUE),
                 'jenis_kelamin'     => $this->input->post('jenis_kelamin',TRUE),
                 'alamat'            => $this->input->post('alamat',TRUE),
-                'no_telp'           => $this->input->post('no_telp',TRUE)
+                'no_telp'           => $this->input->post('no_telp',TRUE) 
             );
             $query = $this->m_anggota->update($id_anggota, $data);
             if ($query) {
