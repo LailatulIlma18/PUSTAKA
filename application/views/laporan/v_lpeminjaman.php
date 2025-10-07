@@ -73,6 +73,7 @@
                 <th>Tanggal Pinjam</th>
                 <th>Tanggal Kembali</th>
                 <th>Status</th>
+				<th>Detail</th>
             </tr>
         </thead>
 
@@ -91,10 +92,31 @@
                             <span class="badge badge-success">Kembali</span>
                         <?php } ?>
                     </td>
+				 <td class="text-center">
+                     <i class="fa fa-info-circle detailBtn" 
+                     data-toggle="modal"
+                     data-target="#detailModal"
+                     data-id="<?= $row->id_peminjaman ?>"
+                     style="font-size:22px; color:#17a2b8; cursor:pointer;"
+                     title="Lihat Detail"></i>
+                </td>
                 </tr>
             <?php } ?>
         </tbody>
     </table>
+</div>
+</div>
+   <div class="modal fade" id="detailModal" tabindex="-1" aria-hidden="true">
+   <div class="modal-dialog modal-lg">
+   <div class="modal-content">
+   <div class="modal-header">
+   <h5 class="modal-title">Detail Peminjaman</h5>
+   <button type="button" class="close" data-dismiss="modal">&times;</button>
+   </div>
+   <div class="modal-body" id="detailContent">
+   <div class="text-center"><i class="fa fa-spinner fa-spin"></i> Memuat data...</div>
+   </div>
+</div>
 </div>
 </div>
 </body>
@@ -107,6 +129,20 @@ $('#example1').DataTable({
     "columnDefs": [
         { "orderable": false, "targets": [5] } 
     ]
+	});
+  $(".detailBtn").click(function(){
+    var id = $(this).data("id");
+    $("#detailContent").html('<div class="text-center"><i class="fa fa-spinner fa-spin"></i> Memuat data...</div>');
+    $.ajax({
+      url: "<?= base_url('laporan/detail_peminjaman/') ?>"+id,
+      type: "GET",
+      success: function(data){
+        $("#detailContent").html(data);
+      },
+      error: function(){
+        $("#detailContent").html('<div class="alert alert-danger">Gagal memuat data.</div>');
+      }
+    });
 });
 });
 </script>

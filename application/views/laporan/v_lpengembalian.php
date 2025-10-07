@@ -16,7 +16,7 @@
 </style>
 
 <link rel="stylesheet" href="<?= base_url('assets/plugins/datatables/dataTables.bootstrap4.min.css'); ?>">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> -->
 </head>
 
 <body>
@@ -119,14 +119,15 @@
             <td>
                 <?= ($row->denda > 0) ? 'Rp' . number_format($row->denda, 0, ',', '.') : '-'; ?>
             </td>
-            <td>
-                <button class="btn btn-info btn-sm detailBtn" 
-                        data-toggle="modal" 
-                        data-target="#detailModal"
-                        data-id="<?= $row->id_pengembalian?>">
-                    <i class="fa fa-eye"></i>
-                </button>
+            <td class="text-center">
+          <i class="fa fa-info-circle detailBtn" 
+              data-toggle="modal" 
+              data-target="#detailModal"
+              data-id="<?= $row->id_pengembalian ?>"
+              style="font-size:22px; color:#17a2b8; cursor:pointer;"
+              title="Lihat Detail"></i>
             </td>
+
         </tr>
         <?php } ?>
     </tbody>
@@ -157,11 +158,12 @@ $(document).ready(function() {
         { "orderable": false, "targets": [6, 7, 8, 9, 10] }
     ]
   });
-  $(".detailBtn").click(function(){
+
+   $(document).on('click', '.detailBtn', function() {
     var id = $(this).data("id");
     $("#detailContent").html('<div class="text-center"><i class="fa fa-spinner fa-spin"></i> Memuat data...</div>');
     $.ajax({
-      url: "<?= base_url('laporan/detail_pengembalian/') ?>"+id, // diarahkan ke controller detail_pengembalian
+      url: "<?= base_url('laporan/detail_pengembalian/') ?>"+id, 
       type: "GET",
       success: function(data){
         $("#detailContent").html(data);

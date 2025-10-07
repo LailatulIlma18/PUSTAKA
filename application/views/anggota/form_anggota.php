@@ -29,7 +29,7 @@
                 <div class="form-group">
                     <label for="inputemail3" class="col-sm-2 control-label">NIS</label>
                     <div class="col-sm-10">
-                        <input type="text"  name="nis"  value="<?= set_value('nis'); ?>"  class="form-control" placeholder="Masukkan NIS" >
+                        <input type="text"  name="nis"  value="<?= set_value('nis'); ?>"  class="form-control" placeholder="Masukkan NIS">
 						<?= form_error('nis', '<small class="text-danger">', '</small>'); ?>
                     </div>
                  </div>
@@ -72,7 +72,7 @@
             <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">Nomor Telepon</label>
                     <div class="col-sm-10">
-                        <input type="text" name="no_telp"  value="<?= set_value('no_telp'); ?>"  class="form-control" placeholder="Masukkan Nomor Telepon Anda"  >
+                        <input type="text" name="no_telp"  value="<?= set_value('no_telp'); ?>"  class="form-control" placeholder="Masukkan Nomor Telepon Anda">
 						 <?= form_error('no_telp', '<small class="text-danger">', '</small>'); ?>
                     </div>
                 </div>

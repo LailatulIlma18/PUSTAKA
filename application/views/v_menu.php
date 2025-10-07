@@ -41,7 +41,6 @@
           <li><a href="<?= base_url()?>pengembalian"><i class="fa fa-download"></i> Pengembalian </a></li>
         </ul>
       </li> 
-
 			  <li class="treeview">
         <a href="#">
           <i class="fa fa-pie-chart"></i>
@@ -55,7 +54,6 @@
           <li><a href="<?= base_url()?>laporan/pengembalian"><i class="fa fa-file-text"></i>Laporan Pengembalian </a></li>
         </ul>
       </li>
-
 				<li><a href="<?= base_url('login/logout')?>"><i class="fa fa-sign-out"></i>Logout</a></li>
 		</ul>
 		</section>
@@ -63,7 +61,7 @@
 
    <?php } else { ?>
 
-      <aside class="main-sidebar">
+      <aside class="main-sidebar"> 
   <section class="sidebar">
     <div class="user-panel">
       <div class="pull-left image">
@@ -115,7 +113,7 @@
           <li><a href="<?= base_url()?>laporan/pengembalian"><i class="fa fa-file-text"></i>Laporan Pengembalian </a></li>
         </ul>
       </li>
-   <li><a href="<?= base_url('login/logout') ?>"><i class="fa fa-sign-out"></i>Logout</a></li>
+    <li><a href="<?= base_url('login/logout') ?>"><i class="fa fa-sign-out"></i>Logout</a></li>
     </ul>
 		</section>
 </aside>

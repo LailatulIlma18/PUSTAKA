@@ -61,9 +61,6 @@ if ($jenis == 'pengembalian') {
 $this->load->view('v_dashboard', $isi);
 }
 
-
-// Export Excel Peminjaman
-
 public function export_peminjaman()
 {
 $tgl_awal  = $this->session->userdata('tanggal_awal');
@@ -100,9 +97,6 @@ foreach ($data as $row) {
 echo "</table>";
 exit;
 }
-
-
-// Export Excel Pengembalian
 
 public function export_pengembalian()
 {
@@ -175,7 +169,41 @@ public function detail_pengembalian($id_pengembalian)
     $this->load->view('laporan/v_detail_pengembalian', ['detail' => $detail]);
 }
 
+public function detail_peminjaman($id_peminjaman)
+{
+    $this->db->select('
+        p.*, 
+        a.nama_anggota, 
+        b.judul, 
+        b.penulis, 
+        b.penerbit, 
+        b.tahun_terbit, 
+        b.isbn, 
+        k.nama_kategori
+    ');
+    $this->db->from('peminjaman p');
+    $this->db->join('anggota a', 'a.id_anggota = p.id_anggota');
+    $this->db->join('buku b', 'b.id_buku = p.id_buku');
+    $this->db->join('kategori k', 'k.id_kategori = b.id_kategori', 'left'); // 🟢 tambahan penting
+    $this->db->where('p.id_peminjaman', $id_peminjaman);
 
+    $detail = $this->db->get()->row();
 
+    if ($detail) {
+        $this->load->view('laporan/v_detail_peminjaman', ['detail' => $detail]);
+    } else {
+        show_error('Data tidak ditemukan', 404);
+    }
+}
 
 }
+
+
+
+
+
+
+
+
+
+
