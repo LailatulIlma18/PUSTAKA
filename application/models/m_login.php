@@ -14,6 +14,7 @@
                     'nama'        => $row->nama ,
                     'username'    => $row->username ,
                     'password'    => $row->password,
+                    'foto'        => $row->foto,
                     'level'       => $row->level
                 );
                 $this->session->set_userdata($sess);
@@ -23,6 +24,13 @@
             $this->session->set_flashdata('info', '<div class="alert alert-danger" role="alert">Login Gagal, Silahkan Periksa Username dan Password !</div>' );
             redirect('login');
         }
+       }
+
+       public function get_user_login()
+       {
+        $id = $this->session->userdata('id');
+        $this->db->where('id', $id);
+        return $this->db->get('login')->row();
        }
 
         public function register($data)

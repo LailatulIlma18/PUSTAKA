@@ -1,9 +1,7 @@
  <?php 
     if (!empty($this->session->flashdata('info'))) {?>
     <div class="alert alert-success" role="alert"><?= $this->session->flashdata('info'); ?></div>
-
    <?php }
-
 ?>
 
 <div class="row">
@@ -11,7 +9,6 @@
         <a href="buku/tambah_buku" class="btn btn-success"><i class="fa fa-plus"></i> Tambah Buku</a>
     </div>
 </div>
-
 <br>
 
 <div class="box">
@@ -23,7 +20,6 @@
         <table id="example1" class="table table-bordered table-striped">
             <thead>
                 <tr>
-                    <!-- <th>Id Buku</th> -->
                     <th>Kode Buku</th>
                     <th>Judul</th>
                     <th>Kategori</th>
@@ -55,11 +51,20 @@
                     </tr>
 
                   <?php }
-                
-                
-                
                 ?>
             </tbody>
         </table>
     </div>
 </div>
+
+<script>
+$(document).ready(function() {
+    $('#example1').DataTable({
+        "order": [[0, "desc"]], 
+        "columnDefs": [
+            { "orderable": false, "targets": 8 } 
+        ]
+    });
+});
+</script>
+

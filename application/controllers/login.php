@@ -16,7 +16,7 @@
         {
             $user = $this->input->post('username');
             $pass = $this->input->post('password');
-            $this->m_login->proses_login($user, $pass);
+            $cek  = $this->m_login->proses_login($user, $pass);
         }
 
         public function logout()

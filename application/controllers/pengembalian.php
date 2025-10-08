@@ -2,46 +2,32 @@
 
 class Pengembalian extends CI_Controller {
 
+    public function __construct() {
+        parent::__construct();
+        $this->load->model('M_Pengembalian');
+        $this->load->model('M_Peminjaman');
+    }
+    
     public function index() {
         $isi['content'] = 'pengembalian/v_pengembalian';
-        $isi['judul'] = 'Pengembalian Buku';
-        $this->load->model('m_pengembalian');
-        $isi['data'] = $this->m_pengembalian->getAllData();
+        $isi['judul']   = 'Pengembalian Buku';
+        $isi['data']    = $this->M_Pengembalian->getAllData('DESC');
         $this->load->view('v_dashboard', $isi);
     }
+   
+    public function kembalikan($id_pinjam)
+    {
+        $pinjam = $this->M_Peminjaman->getById($id_pinjam);
+        $tgl_pinjam    = new DateTime($pinjam->tgl_pinjam);
+        $tgl_kembali   = new DateTime($pinjam->tgl_kembali);
+        $tgl_sekarang  = new DateTime(date('Y-m-d'));
+        $selisih       = max(0, $tgl_sekarang->diff($tgl_kembali)->days);
 
-    // public function kembalikan($id) {
-    //     $data = $this->m_peminjaman->getDataById_peminjaman($id);
+        $this->M_Pengembalian->simpan($data_pengembalian);
+        $this->M_Peminjaman->updateStatus($id_pinjam, 'dikembalikan');
+        redirect('pengembalian');
+    }
 
-    //     $tgl_kembali = new DateTime($data['tgl_kembali']);
-    //     $tgl_sekarang = new DateTime();
-    //     $selisih = $tgl_sekarang->diff($tgl_kembali)->format("%a");
-    //         if ($tgl_sekarang > $tgl_kembali) {
-    //             $telat = $selisih;
-    //             $denda = $telat * 1000;
-    //         }else{
-    //             $telat = 0;
-    //             $denda = 0;
-    //         }
-
-    //     $kembalikan = array(
-    //         'id_anggota' => $data['id_anggota'],
-    //         'id_buku' => $data['id_buku'],
-    //         'tgl_pinjam' => $data['tgl_pinjam'],
-    //         'tgl_kembali' => $data['tgl_kembali'],
-    //         'tgl_kembalikan' => date('Y-m-d'),
-    //         'telat' => $telat,
-    //         'denda' => $denda
-    //     );
-
-        //  $query = $this->db->insert('pengembalian', $kembalikan);
-        // if ($query = true) {
-        //     $delete = $this->m_peminjaman->deletePeminjaman($id);
-        //     if ($delete = true) {
-        //         $this->session->set_flashdata('info', 'Buku Berhasil di Kembalikan');
-        //         redirect('peminjaman');
-        //     }
-        // }
-    // }
 }
+
 ?>

@@ -27,16 +27,16 @@
       <script src="<?= base_url()?>asset/bower_components/jquery/dist/jquery.min.js"></script>
   </head>
 
-  <body class="hold-transition skin-blue sidebar-mini">
+  <body class="hold-transition skin-green sidebar-mini">
       <div class="wrapper">
 
           <header class="main-header">
               <!-- Logo -->
               <a href="" class="logo">
                   <!-- mini logo for sidebar mini 50x50 pixels -->
-                  <span class="logo-mini"><b>A</b>LT</span>
+                  <span class="logo-mini"><b>MAK</b>NEnde</span>
                   <!-- logo for regular state and mobile devices -->
-                  <span class="logo-lg"><b>Admin</b>Perpustakaan</span>
+                  <span class="logo-lg"><b>Perpustakaan</b></span>
               </a>
               <!-- Header Navbar: style can be found in header.less -->
               <nav class="navbar navbar-static-top">

@@ -1,6 +1,12 @@
 <?php 
 
-class M_anggota Extends CI_Model{
+class M_anggota extends CI_Model{
+
+	public function get_all()
+    {
+        $this->db->order_by('id_anggota', 'DESC');
+        return $this->db->get('anggota')->result();
+    }
 
     public function kode_anggota()
     {
@@ -24,24 +30,21 @@ class M_anggota Extends CI_Model{
     {
         $this->db->where('id_anggota', $id);
         return $this->db->get('anggota')->row_array();
-        // $query = $this->db->get('anggota'); 
+       
     }
 
     public function update($id_anggota, $data)
     {
         $this->db->where('id_anggota', $id_anggota);
-        $this->db->update('anggota', $data);
+        return $this->db->update('anggota', $data);
     }
 
     public function hapus($id)
     {
         $this->db->where('id_anggota', $id);
-        $this->db->delete('anggota');
+        return  $this->db->delete('anggota');
     }
+	
 }
-
-
-
-
 
 ?>

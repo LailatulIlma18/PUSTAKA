@@ -1,9 +1,7 @@
 <?php 
     if (!empty($this->session->flashdata('info'))) {?>
     <div class="alert alert-success" role="alert"><?= $this->session->flashdata('info'); ?></div>
-
    <?php }
-
 ?>
 
 <div class="row">
@@ -47,3 +45,10 @@
         </table>
     </div>
 </div>
+<script>
+  $(document).ready(function () {
+    $('#example1').DataTable({
+      "order": [[0, "desc"]] 
+    });
+  });
+</script>
